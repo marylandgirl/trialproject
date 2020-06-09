@@ -26,8 +26,6 @@ public class HomeController {
 
     @RequestMapping("/login")
     public String login(Model model) {
-//        model.addAttribute("interests", interestRepository.findAll());
-
         if(userService.getUser() != null){
             model.addAttribute("loggedUser", userService.getUser());
         }
@@ -36,10 +34,7 @@ public class HomeController {
 
     @RequestMapping("/register")
     public String getRegistrationForm(Model model) {
-//        model.addAttribute("userForm", new UserForm());
         model.addAttribute("newUser", new User());
-//        model.addAttribute("interests", interestRepository.findAll());
-
         if(userService.getUser() != null){
             model.addAttribute("loggedUser", userService.getUser());
         }

@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -11,6 +13,9 @@ public class Employee {
     private long id;
 
     private String userName;
+
+    private String password;
+
     private String lastName;
     private String firstName;
     private String email;
@@ -27,9 +32,13 @@ public class Employee {
         timeSheetSet = null;
     }
 
-    public Employee(String userName, String lastName, String firstName, String email,
+    public Employee(String userName, String password, String lastName, String firstName, String email,
                     double payRate, Manager manager, Set<TimeSheet> timeSheetSet) {
         this.userName = userName;
+        this.setPassword(password);     // call the setPassword method to encode
+                                        // the password and check its length
+                                        // (user should enter >= 3) before go
+                                        // and be saved in database
         this.lastName = lastName;
         this.firstName = firstName;
         this.email = email;
@@ -37,6 +46,10 @@ public class Employee {
         this.manager = manager;
         this.timeSheetSet = timeSheetSet;
     }
+
+    public void clearPassword(){        // when registration is updated or has
+        this.password = "";             // error the password input box will be
+    }                                   // flushed and is seen empty in the form.
 
     public long getId() {
         return id;
@@ -52,6 +65,19 @@ public class Employee {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        if(password.length() < 3){
+            this.password = password;
+        } else{
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            this.password = passwordEncoder.encode(password);
+        }
     }
 
     public String getLastName() {

@@ -37,18 +37,18 @@ public class DataLoader implements CommandLineRunner {
         Manager managerOfSue = new Manager(new HashSet<Employee>());
         managerRepository.save(managerOfSue);
 
-        Employee empSue = new Employee("sue", "Han", "Sue",
+        Employee empSue = new Employee("sue", "sue", "Han", "Sue",
                 "sue@mc.edu", 200.00, managerOfSue, new HashSet<TimeSheet>());
 
 
 
-        Employee ashu = new Employee("ashu", "Maru", "Ashuashenafi",
+        Employee ashu = new Employee("ashu", "ashu", "Maru", "Ashuashenafi",
                 "ashu@mc.edu", 100.00, managerSue, new HashSet<TimeSheet>());
 
-        Employee bilen = new Employee("bilen", "Worku", "Bilen",
+        Employee bilen = new Employee("bilen", "bilen", "Worku", "Bilen",
                 "bilen@mc.edu", 100.00, managerSue, new HashSet<TimeSheet>());
 
-        Employee kim = new Employee("kim", "Levin", "Kim",
+        Employee kim = new Employee("kim", "kim", "Levin", "Kim",
                 "kim@mc.edu", 100.00, managerSue, new HashSet<TimeSheet>());
 
         managerSue.getEmployeeSet().add(ashu);
