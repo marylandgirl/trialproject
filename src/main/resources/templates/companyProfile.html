@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>company-profile</title>
+</head>
+<body>
+<form action="#" th:object = "${companyProfile}"><label>Description</label>
+    <input type="textbox" rows="4" class="w3-input w3-border w3-padding" th:field="*{description}">
+
+    <label>PhotoUrl</label>
+    <input type="text" class="w3-input w3-border w3-padding" th:field="*{lastName}"></form>
+
+</body>
+</html>

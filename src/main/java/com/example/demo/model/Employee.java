@@ -20,6 +20,7 @@ public class Employee {
     private String firstName;
     private String email;
     private double payRate;
+    private boolean enabled;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "manager_id")
@@ -33,7 +34,7 @@ public class Employee {
     }
 
     public Employee(String userName, String password, String lastName, String firstName, String email,
-                    double payRate, Manager manager, Set<TimeSheet> timeSheetSet) {
+                    double payRate, boolean enabled, Manager manager, Set<TimeSheet> timeSheetSet) {
         this.userName = userName;
         this.setPassword(password);     // call the setPassword method to encode
                                         // the password and check its length
@@ -43,6 +44,7 @@ public class Employee {
         this.firstName = firstName;
         this.email = email;
         this.payRate = payRate;
+        this.enabled = enabled;
         this.manager = manager;
         this.timeSheetSet = timeSheetSet;
     }
@@ -110,6 +112,14 @@ public class Employee {
 
     public void setPayRate(double payRate) {
         this.payRate = payRate;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     public Manager getManager() {

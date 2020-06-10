@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>guest-register</title>
-    <th:block th:insert="test-navbar :: headStuff"></th:block>
+    <th:block th:insert="base :: headStuff"></th:block>
 </head>
 <body class="w3-theme-l5">
 <!-- Navbar -->
-<nav th:replace="test-navbar :: navlinks"></nav>
+<nav th:replace="base :: navlinks"></nav>
 
 
 <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
@@ -28,7 +28,7 @@
             <div class="w3-col m12">
                 <div class="w3-card w3-round w3-white">
                     <div class="w3-container w3-padding">
-                        <form th:object = "${user}" th:action="@{/guestProcess}" method="post" enctype="multipart/form-data">
+                        <form th:object = "${newUser}" th:action="@{/process-registration}" method="post" enctype="multipart/form-data">
 
                             <input type="hidden" th:field="*{id}">
                             <label>First Name</label>
@@ -57,12 +57,12 @@
                             <!--                            <span class="error" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></span><br/>-->
 
                             <fieldset>
-                                <legend>Interests:</legend>
-                                <select class="form-control"  multiple>
-                                    <option
+                                <legend>Choose Manager:</legend>
+<!--                                <select class="form-control"  multiple>-->
+<!--                                    <option-->
 
-                                            ></option>
-                                </select>
+<!--                                            ></option>-->
+<!--                                </select>-->
                             </fieldset>
                             <br/><br/>
                             <button type="submit" class="w3-button w3-theme"><i class="fa fa-pencil"></i>Register</button>

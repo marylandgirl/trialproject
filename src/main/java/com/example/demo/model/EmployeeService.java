@@ -1,32 +1,31 @@
 package com.example.demo.model;
 
-
-import com.example.demo.repository.UserRepository;
+import com.example.demo.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService {
+public class EmployeeService {
     @Autowired
-    UserRepository userRepository;
+    EmployeeRepository employeeRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository)
+    public EmployeeService(EmployeeRepository employeeRepository)
     {
-        this.userRepository = userRepository;
+        this.employeeRepository = employeeRepository;
     }
 
     // returns currently logged in user
-    public User getUser(){
+    public Employee getEmployee(){
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         String currentUsername = authentication.getName();
 
-        User user = userRepository.findByUsername(currentUsername);
+        Employee employee = employeeRepository.findByUserName(currentUsername);
 
-        return user;
+        return employee;
     }
 }

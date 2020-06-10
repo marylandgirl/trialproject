@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.com" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
 <head>
     <meta charset="UTF-8">
-    <title>index</title>
+    <title>admin</title>
     <th:block th:insert="base :: headStuff"></th:block>
     <style>
         .my-columns {
@@ -41,16 +41,22 @@
         <!--Middle Column-->
         <div class="col-md-7 my-columns d-flex justify-content-center">
 
-                <h1>Index Page under Construction</h1>
-                <br/>
-                <br/>
-                <br/>
-                <hr/>
+            <h1>Admin Page under Construction</h1>
+            <br/>
+            <br/>
+            <br/>
+
 
         </div>
 
         <!--Right Column-->
-        <div class="col-md-3 my-columns" > Right Column </div>
+        <div class="col-md-3 my-columns" >
+            <h2>Right Column </h2>
+            <h4>Timesheets in Queue</h4>
+            <h4>Suspended</h4>
+            <h4>Rejected</h4>
+        </div>
+
     </div>
 </div>
 
@@ -63,17 +69,8 @@
                 <th scope="col">Last Name</th>
                 <th scope="col">Username</th>
                 <th scope="col">Email</th>
-
-                <span th:each="role : ${roles}">
-                    <span th:if="${role.role == 'ROLE_ADMIN'}">
-
-                        <th scope="col">Enabled</th>
-
-                        <th scope="col">Action</th>
-
-                    </span>
-                </span>
-
+                <th scope="col">Enabled</th>
+                <th scope="col">Action</th>
             </tr>
             </thead>
             <tbody>
@@ -82,34 +79,20 @@
                 <td>[[${user.lastName}]]</td>
                 <td>[[${user.username}]]</td>
                 <td>[[${user.email}]]</td>
-
-                <span th:each="role : ${roles}">
-                    <span th:if="${role.role == 'ROLE_ADMIN'}">
-                        <td>[[${user.enabled}]]</td>
-                    </span>
-                </span>
-
-
+                <td>[[${user.enabled}]]</td>
                 <td  style="text-align: right">
-                    <span th:each="role : ${roles}">
-                        <span th:if="${role.role == 'ROLE_ADMIN'}">
-
-                        <a class="btn btn-info btn-sm"  th:href = "@{/secure/{id}(id=${user.id})}" title="Detail">
-                            <i class="fas fa-info-circle"></i>
-                        </a>
-
-                            <a class="btn btn-primary btn-sm" th:href="@{/disable-user/{id}(id=${user.id})}"
-                               title="Disable/Enable">
-                                <i class="far fa-bell-slash"></i>
-                            </a>
-
-                            <a class="btn btn-danger btn-sm" style="color: lightcoral" th:href =
-                                    "@{/delete-user/{id}(id=${user.id})}"
-                               onclick="if(!(confirm('Are you sure you want to delete this User?'))) return false" disabled title="Delete">
-                                <i class="fas fa-pencil-ruler"></i>
-                            </a>
-                        </span>
-                    </span>
+                    <a class="btn btn-info btn-sm"  th:href = "@{/secure/{id}(id=${user.id})}" title="Detail">
+                        <i class="fas fa-info-circle"></i>
+                    </a>
+                    <a class="btn btn-primary btn-sm"  th:href = "@{/disable-user/{id}(id=${user.id})}" title="Disable/Enable">
+                        <i class="far fa-bell-slash"></i>
+                    </a>
+                    <!--                    <a class="btn btn-success btn-xs" th:href = "@{/detail-user/{id}(id=${user.id})}">Details</a>-->
+                    <a class="btn btn-danger btn-sm" style="color: lightcoral" th:href =
+                            "@{/delete-user/{id}(id=${user.id})}"
+                       onclick="if(!(confirm('Are you sure you want to delete this User?'))) return false" disabled title="Delete">
+                        <i class="fas fa-pencil-ruler"></i>
+                    </a>
 
                 </td>
             </tr>

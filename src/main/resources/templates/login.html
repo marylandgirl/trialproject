@@ -12,7 +12,7 @@
 </head>
 <body>
 <!-- Navbar -->
-<nav th:replace="base :: navlinks"></nav>
+<nav th:replace="base :: navlinks-guest"></nav>
 
 <!-- Page Container -->
 <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
@@ -42,7 +42,7 @@
                             <div class="w3-center">You have been logged out.</div><br/><br/>
                         </div>
 
-                        <form th:action="@{/login}" method="post">
+                        <form th:action="@{/login}" th:field="${employee}" method="post">
                             <label>Username</label>
                             <input type="text" name="username" class="w3-input w3-border w3-padding"><br/>
                             <label>Password</label>
@@ -52,7 +52,6 @@
                                     <i class="fa fa-pencil"></i> Sign In
                                 </button>
                             </div>
-
                         </form>
                     </div>
                 </div>

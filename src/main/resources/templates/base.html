@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>base</title>
@@ -42,6 +42,60 @@
                     <a class="nav-link" th:href="@{/post}" sec:authorize="isAuthenticated()">Posts</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" th:href="@{/admin-employee}" sec:authorize="isAuthenticated()">Admin</a>
+                </li>
+
+
+            </ul>
+        </div>
+        <div class="mx-auto  order-0">
+            <div class="row">
+                <span th:if="${#authentication.name == null}" style="color: white">Welcome</span>
+                <span th:unless="${#authentication.name == null}" style="color: white">[[${loggedUser.firstName}]]&nbsp[[${loggedUser.lastName}]]</span>
+
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/login}" sec:authorize="!isAuthenticated()">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/logout}" sec:authorize="isAuthenticated()">Logout</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/register}" sec:authorize="isAuthenticated()" style="color: white" title="Register/Employee!">
+
+                        <i class="fas fa-user-plus"></i>
+
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<!--guest page navbar-->
+<!--fragment navbar-->
+<div th:fragment="navlinks-guest">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" title="Selam!"><i class="fas fa-puzzle-piece"></i> &nbsp <strong>KAB</strong></a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}"><i class="fas fa-house-damage"></i>&nbsp Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/post}" sec:authorize="isAuthenticated()">Posts</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" th:href="@{/displayUsers}" sec:authorize="isAuthenticated()">Admin</a>
                 </li>
 
@@ -49,12 +103,9 @@
             </ul>
         </div>
         <div class="mx-auto  order-0">
-            <div class="row"> <span style="color: white" sec:authorize="!isAuthenticated()">Welcome</span>
-                <a class="navbar-brand mx-auto" th:href="@{/profile}" >
-                    <span sec:authorize="isAuthenticated()">
-                        [[${loggedUser.firstName}]]&nbsp[[${loggedUser.lastName}]]
-
-                    </span>
+            <div class="row">
+                <a class="navbar-brand mx-auto" href="" >
+                    <span style="color: white">Welcome</span>
                 </a>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
@@ -71,12 +122,15 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/register}" sec:authorize="isAuthenticated()" style="color: white" title="Register/Employee!"><i class="fas fa-employee-plus"></i></a>
+                    <a class="nav-link" th:href="@{/register}" sec:authorize="isAuthenticated()" style="color: white" title="Register/Employee!">
+                        <i class="fas fa-user-plus"></a>
                 </li>
             </ul>
         </div>
     </nav>
 </div>
+
+
 
 
 <!--fragment footer-->
