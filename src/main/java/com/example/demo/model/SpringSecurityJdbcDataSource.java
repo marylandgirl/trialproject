@@ -24,7 +24,8 @@ public class SpringSecurityJdbcDataSource {
     @Bean
     public CommandLineRunner run(UserRepository userRepository, RoleRepository roleRepository,
                                  EmployeeRepository employeeRepository, TimeSheetRepository timeSheetRepository,
-                                 ManagerRepository managerRepository, DailyTimeEntryRepository dailyTimeEntryRepository) throws Exception {
+                                 ManagerRepository managerRepository, DailyTimeEntryRepository dailyTimeEntryRepository,
+                                 TestTimeSheetRepository testTimeSheetRepository) throws Exception {
         return(String[] args) -> {
 
 
@@ -63,25 +64,32 @@ public class SpringSecurityJdbcDataSource {
             Role adminRole2 = new Role("super", "ROLE_USER");
             roleRepository.save(adminRole2);
 
+
+
             Manager managerSue = new Manager(new HashSet<Employee>());
             Manager managerOfSue = new Manager(new HashSet<Employee>());
             managerRepository.save(managerOfSue);
 
+
             Employee empSue = new Employee("sue", "sue", "Han", "Sue",
                     "sue@mc.edu", 200.00, true, managerOfSue, new HashSet<TimeSheet>());
             Role adminRoleSue = new Role("sue", "ROLE_ADMIN");
+            roleRepository.save(adminRoleSue);
 
-            Employee ashu = new Employee("ashu", "ashu", "Maru", "Ashuashenafi",
+            Employee ashu = new Employee("ashu", "ashu", "Maru", "Ashenafi",
                     "ashu@mc.edu", 100.00, true, managerSue, new HashSet<TimeSheet>());
-            Role userRoleAshu = new Role("sue", "ROLE_USER");
+            Role userRoleAshu = new Role("ashu", "ROLE_USER");
+            roleRepository.save(userRoleAshu);
 
             Employee bilen = new Employee("bilen", "bilen", "Worku", "Bilen",
                     "bilen@mc.edu", 100.00, true, managerSue, new HashSet<TimeSheet>());
-            Role userRoleBilen = new Role("sue", "ROLE_USER");
+            Role userRoleBilen = new Role("bilen", "ROLE_USER");
+            roleRepository.save(userRoleBilen);
 
             Employee kim = new Employee("kim", "kim", "Levin", "Kim",
                     "kim@mc.edu", 100.00, true, managerSue, new HashSet<TimeSheet>());
-            Role userRoleKim = new Role("sue", "ROLE_USER");
+            Role userRoleKim = new Role("kim", "ROLE_USER");
+            roleRepository.save(userRoleKim);
 
 
             managerSue.getEmployeeSet().add(ashu);
@@ -131,6 +139,14 @@ public class SpringSecurityJdbcDataSource {
                     0, 0, 4, ashuTimeSheet2);
             dailyTimeEntryRepository.save(ashuDayThreeWk2);
 
+
+                        TestTimesheet testTimesheetWeek1 = new TestTimesheet(20, 20,
+                                1000.00);
+            testTimeSheetRepository.save(testTimesheetWeek1);
+
+TestTimesheet testTimesheetWeek2 = new TestTimesheet(30, 15,
+                                2625.00);
+            testTimeSheetRepository.save(testTimesheetWeek2);
 
 
 

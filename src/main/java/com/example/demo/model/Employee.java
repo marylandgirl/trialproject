@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@Table(name="employees_db")
 public class Employee {
 
     @Id
@@ -33,8 +34,31 @@ public class Employee {
         timeSheetSet = null;
     }
 
+
+
     public Employee(String userName, String password, String lastName, String firstName, String email,
                     double payRate, boolean enabled, Manager manager, Set<TimeSheet> timeSheetSet) {
+        this.userName = userName;
+        this.setPassword(password);     // call the setPassword method to encode
+        // the password and check its length
+        // (user should enter >= 3) before go
+        // and be saved in database
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.email = email;
+        this.payRate = payRate;
+        this.enabled = enabled;
+        this.manager = manager;
+        this.timeSheetSet = timeSheetSet;
+    }
+
+
+
+
+
+
+    public Employee(String userName, String password, String lastName, String firstName, String email,
+                    double payRate, boolean enabled, Manager manager) {
         this.userName = userName;
         this.setPassword(password);     // call the setPassword method to encode
                                         // the password and check its length
@@ -46,8 +70,13 @@ public class Employee {
         this.payRate = payRate;
         this.enabled = enabled;
         this.manager = manager;
-        this.timeSheetSet = timeSheetSet;
+
     }
+
+
+
+
+
 
     public void clearPassword(){        // when registration is updated or has
         this.password = "";             // error the password input box will be

@@ -21,6 +21,10 @@ public class Manager {
         this.employeeSet = new HashSet<Employee>();
     }
 
+//    public Manager(long emp_id) {
+//        this.emp_id = emp_id;
+//    };
+
     public Manager(Set<Employee> employeeSet) {
         this.employeeSet = employeeSet;
     }
