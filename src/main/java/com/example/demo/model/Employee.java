@@ -34,8 +34,6 @@ public class Employee {
         timeSheetSet = null;
     }
 
-
-
     public Employee(String userName, String password, String lastName, String firstName, String email,
                     double payRate, boolean enabled, Manager manager, Set<TimeSheet> timeSheetSet) {
         this.userName = userName;
@@ -68,11 +66,6 @@ public class Employee {
         this.manager = manager;
 
     }
-
-
-
-
-
 
     public void clearPassword(){        // when registration is updated or has
         this.password = "";             // error the password input box will be
@@ -154,7 +147,6 @@ public class Employee {
     public void setManager(Manager manager) {
         this.manager = manager;
     }
-
 
     public Set<TimeSheet> getTimeSheetSet() {
         return timeSheetSet;

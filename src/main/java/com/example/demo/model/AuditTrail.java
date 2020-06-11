@@ -20,10 +20,6 @@ public class AuditTrail {
     private String action;      //"logged_in", "logged_out", "timesheet_started", "timesheet_saved",
                                 // "timesheet_submitted", "timesheet_approved", "timesheet_rejected"
     private String timeOfAction;
-//    private String empFirstName;
-//    private String empLastName;
-
-//    private int timeStage;                   //created=1,edited=2,approved=3,rejected=4,archived=5
 
     public AuditTrail() {
     }
@@ -33,7 +29,6 @@ public class AuditTrail {
         this.action = action;
         this.timeOfAction = timeOfAction;
         this.timesheetId = timesheetId;
-
     }
 
     public long getId() {
