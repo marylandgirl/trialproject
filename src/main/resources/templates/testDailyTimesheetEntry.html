@@ -6,34 +6,37 @@
 </head>
 <body>
 <h1>daily entry page</h1>
+<form autocomplete="off" action="#" th:object = "${testDailyTimeEntry}" th:action="@{/saveDaily}" method="post" enctype="multipart/form-data">
+
 <label>Regular Hrs</label>
-<input type="number" class="w3-input w3-border w3-padding" th:field="*{regHours}"><br/>
+<input type="text" class="w3-input w3-border w3-padding" th:field="*{regHours}"><br/><br/>
 
 <label>overtimeHours</label>
-<input type="number" class="w3-input w3-border w3-padding" th:field="*{overtimeHours}"><br/>
+<input type="number" class="w3-input w3-border w3-padding" th:field="*{overtimeHours}"><br/><br/>
 
 <label>holidayHours</label>
-<input type="number" class="w3-input w3-border w3-padding" th:field="*{holidayHours}"><br/>
+<input type="number" class="w3-input w3-border w3-padding" th:field="*{holidayHours}"><br/><br/>
 
 <label>holidayWorkedHours</label>
-<input type="number" class="w3-input w3-border w3-padding" th:field="*{holidayWorkedHours}"><br/>
+<input type="number" class="w3-input w3-border w3-padding" th:field="*{holidayWorkedHours}"><br/><br/>
 
 <label>holidayOTHours</label>
-<input type="number" class="w3-input w3-border w3-padding" th:field="*{holidayOTHours}"><br/>
+<input type="number" class="w3-input w3-border w3-padding" th:field="*{holidayOTHours}"><br/><br/>
 
 <label>leaveNoPayHours</label>
-<input type="number" class="w3-input w3-border w3-padding" th:field="*{leaveNoPayHours}"><br/>
+<input type="number" class="w3-input w3-border w3-padding" th:field="*{leaveNoPayHours}"><br/><br/>
 
 <label>compTimeEarnedHours</label>
-<input type="number" class="w3-input w3-border w3-padding" th:field="*{compTimeEarnedHours}"><br/>
+<input type="number" class="w3-input w3-border w3-padding" th:field="*{compTimeEarnedHours}"><br/><br/>
 
 <label>compTimeUsedHours</label>
-<input type="number" class="w3-input w3-border w3-padding" th:field="*{compTimeUsedHours}"><br/>
+<input type="number" class="w3-input w3-border w3-padding" th:field="*{compTimeUsedHours}"><br/><br/>
 
 <label>leaveHours</label>
-<input type="number" class="w3-input w3-border w3-padding" th:field="*{leaveHours}"><br/>
-
-
+<input type="number" class="w3-input w3-border w3-padding" th:field="*{leaveHours}"><br/><br/>
+    <br/><br/>
+    <button type="submit" class="w3-button w3-theme"><i class="fa fa-pencil"></i>Enter</button>
+</form>
 
 </body>
 </html>

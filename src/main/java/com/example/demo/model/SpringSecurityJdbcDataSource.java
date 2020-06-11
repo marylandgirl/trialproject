@@ -20,47 +20,9 @@ public class SpringSecurityJdbcDataSource {
 
 
     @Bean
-    public CommandLineRunner run(UserRepository userRepository, RoleRepository roleRepository,
-                                 EmployeeRepository employeeRepository, TimeSheetRepository timeSheetRepository,
-                                 ManagerRepository managerRepository, DailyTimeEntryRepository dailyTimeEntryRepository,
-                                 TestTimeSheetRepository testTimeSheetRepository) throws Exception {
+    public CommandLineRunner run(RoleRepository roleRepository, EmployeeRepository employeeRepository, TimeSheetRepository timeSheetRepository,
+                                 ManagerRepository managerRepository) throws Exception {
         return (String[] args) -> {
-
-
-            // insert first user hard code it
-
-
-            User user = new User("bart", "bart@domain.com", "bart",
-                    "Bart", "Simpson", true);
-
-            Role userRole = new Role("bart", "ROLE_USER");
-//            for (Interest interests: interestRepository.findAll()){
-//                user.getInterests().add(interests);
-//            }
-
-            userRepository.save(user);
-            roleRepository.save(userRole);
-
-            // second user hard code it
-            User admin1 = new User("admin", "ted@domain.com", "admin",
-                    "Teddy", "Bear", true);
-            Role adminRole1 = new Role("admin", "ROLE_ADMIN");
-
-            userRepository.save(admin1);
-            roleRepository.save(adminRole1);
-
-
-            // insert third user
-            User admin = new User("super", "super@domain.com", "super",
-                    "Super", "Man", true);
-            Role adminRole = new Role("super", "ROLE_ADMIN");
-
-            userRepository.save(admin);
-            roleRepository.save(adminRole);
-
-            Role adminRole2 = new Role("super", "ROLE_USER");
-            roleRepository.save(adminRole2);
-
 
             Manager managerSue = new Manager(new HashSet<Employee>());
             Manager managerOfSue = new Manager(new HashSet<Employee>());
@@ -123,47 +85,6 @@ public class SpringSecurityJdbcDataSource {
                     0, 0, 0, 0, 40,
                     0, 0, "", true, new HashSet<TestDailyTimeEntry>());
             timeSheetRepository.save(bilenTimeSheet2);
-
-
-            TestDailyTimeEntry ashuDayThreeWk1 = new TestDailyTimeEntry(LocalDate.of(2020, 5, 27),
-                    8, 1, 0, 0, 0, 0,
-                    0, 0, 0, ashuTimeSheet1);
-            dailyTimeEntryRepository.save(ashuDayThreeWk1);
-
-            TestDailyTimeEntry ashuDayThreeWk2 = new TestDailyTimeEntry(LocalDate.of(2020, 6, 2),
-                    4, 0, 0, 0, 0, 0,
-                    0, 0, 4, ashuTimeSheet2);
-            dailyTimeEntryRepository.save(ashuDayThreeWk2);
-
-
-            TestTimesheet testTimesheetWeek1 = new TestTimesheet(employeeRepository.findByUserName("ashu").getId(), 20, 20,
-                    1000.00);
-            testTimeSheetRepository.save(testTimesheetWeek1);
-
-            TestTimesheet testTimesheetWeek2 = new TestTimesheet(employeeRepository.findByUserName("ashu").getId(), 30, 15,
-                    2625.00);
-            testTimeSheetRepository.save(testTimesheetWeek2);
-
-            TestTimesheet testTimesheetWeek3 = new TestTimesheet(employeeRepository.findByUserName("bilen").getId(), 30, 15,
-                    2625.00);
-            testTimeSheetRepository.save(testTimesheetWeek3);
-
-            TestTimesheet testTimesheetWeek4 = new TestTimesheet(employeeRepository.findByUserName("sue").getId(), 30, 15,
-                    2625.00);
-            testTimeSheetRepository.save(testTimesheetWeek4);
-
-            TestTimesheet testTimesheetWeek5 = new TestTimesheet(employeeRepository.findByUserName("ashu").getId(), 30, 15,
-                    2625.00);
-            testTimeSheetRepository.save(testTimesheetWeek5);
-
-            TestTimesheet testTimesheetWeek6 = new TestTimesheet(employeeRepository.findByUserName("bilen").getId(), 30, 15,
-                    2625.00);
-            testTimeSheetRepository.save(testTimesheetWeek6);
-
-            TestTimesheet testTimesheetWeek7 = new TestTimesheet(employeeRepository.findByUserName("sue").getId(), 30, 15,
-                    2625.00);
-            testTimeSheetRepository.save(testTimesheetWeek7);
-
 
 
 
