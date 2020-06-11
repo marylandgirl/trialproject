@@ -40,7 +40,7 @@ public class HomeController {
     @GetMapping("/")
     public String homePage(Model model) {
         // get all employees in the model
-        model.addAttribute("allUsers", employeeRepository.findAll());
+        model.addAttribute("allEmployees", employeeRepository.findAll());
         // notify the Service class to add a record of "log in" action
         auditTrailService.addLoginAudit();
 

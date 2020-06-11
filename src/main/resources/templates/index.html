@@ -61,19 +61,19 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="user : ${allUsers}">
-            <th:block th:if="${user.id} == ${loggedUser.id}">
-                <td>[[${user.firstName}]]</td>
-                <td>[[${user.lastName}]]</td>
-                <td>[[${user.userName}]]</td>
-                <td>[[${user.email}]]</td>
+            <tr th:each="employee : ${allEmployees}">
+            <th:block th:if="${employee.id} == ${loggedUser.id}">
+                <td>[[${employee.firstName}]]</td>
+                <td>[[${employee.lastName}]]</td>
+                <td>[[${employee.userName}]]</td>
+                <td>[[${employee.email}]]</td>
 
             <td>
-                <a th:href="@{/timesheet/{id}(id=${user.id})}">NEW-TIMESHEET</a>
+                <a th:href="@{/enterTime/{id}(id=${employee.id})}">START TIMESHEET</a>
                 <!-- this link leads to daily time entry form-->
             </td>
                 <td>
-                    <a th:href="@{/timesheet/{id}(id=${user.id})}">PAY-STUB-STATUS</a>
+                    <a th:href="@{/timesheet/{id}(id=${employee.id})}">PAY-STUB-STATUS</a>
                     <!-- this one is either to generate weekly pay stub or follow up the staus-->
                 </td>
             

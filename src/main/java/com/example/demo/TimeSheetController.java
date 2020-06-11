@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.DayOfWeek;
 import java.time.Duration;
@@ -42,12 +39,18 @@ public class TimeSheetController {
 
     static final int DAYS_PER_PAY_PERIOD = 7;
 
-    @GetMapping("/entertime")
-    public String timesheetForm(Model model) {
+    @GetMapping("/enterTime/{id}")
+    public String timesheetForm(@PathVariable("id") long id, Employee employee, Model model) {
+//        Employee tempUser;
+//        tempUser = employeeRepository.findById(id).get();
+//
+//        TimeSheet tempTimesheet = new TimeSheet();
+//        tempTimesheet.set
         LocalDate monday = LocalDate.now().with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
         LocalDate sunday = monday.plusDays(6);
         model.addAttribute("start", monday);
         model.addAttribute("end", sunday);
+
         WeeklyTimeEntry weeklyTimeEntry = new WeeklyTimeEntry();
         model.addAttribute("timeEntries", weeklyTimeEntry);
         return "timesheetForm";
