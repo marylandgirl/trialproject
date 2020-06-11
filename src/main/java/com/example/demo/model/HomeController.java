@@ -57,7 +57,7 @@ public class HomeController {
     }
 
 
-    @RequestMapping("/logoutsuccess")
+    @RequestMapping("/logoutSuccess")
     public String logout() {
         return "redirect:/login";
     }
@@ -71,7 +71,7 @@ public class HomeController {
         return "register";
     }
 
-    @RequestMapping("/admin-employee")
+    @RequestMapping("/adminPage")
     public String adminPageListOfEmployee(Model model) {
         model.addAttribute("allUsers", employeeRepository.findAll());
         // get logged in employeeId
@@ -80,7 +80,6 @@ public class HomeController {
 
         // inform the service class that this employee has accessed admin page spot
         auditTrailService.addAdminAudit(tempEmployee);
-
 
         if (employeeService.getEmployee() != null) {
             model.addAttribute("loggedUser", employeeService.getEmployee());
@@ -92,7 +91,7 @@ public class HomeController {
 
         model.addAttribute("qtyOfPendingTimesheets", countPendingTimesheet);
 
-        return "admin-list";
+        return "adminList";
     }
 
     @RequestMapping("/process-registration")
@@ -116,11 +115,10 @@ public class HomeController {
             employeeRepository.save((employee));
         }
         return "redirect:/";
-
     }
 
-    @RequestMapping("/disable-user/{id}")
-    public String disableUser(@PathVariable("id") long id, Model model, Principal principal) {
+    @RequestMapping("/disableUser/{id}")
+    public String disableOrEnableEmployee(@PathVariable("id") long id, Model model, Principal principal) {
         Employee tempUser;
         tempUser = employeeRepository.findById(id).get();
         if (tempUser.isEnabled()) {
@@ -135,7 +133,7 @@ public class HomeController {
         if (employeeService.getEmployee() != null) {
             model.addAttribute("loggedUser", employeeService.getEmployee());
         }
-        return "redirect:/admin-employee";
+        return "redirect:/adminPage";
     }
 
 

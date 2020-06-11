@@ -65,28 +65,26 @@ public class SpringSecurityJdbcDataSource {
             TimeSheet ashuTimeSheet1 = new TimeSheet(LocalDate.of(2020, 5, 24),
                     LocalDate.of(2020, 5, 30), ashu, 40, 0, 0,
                     0, 0, 0, 0, 0,
-                    0, 0, "", true, new HashSet<TestDailyTimeEntry>());
+                    0, 0, "", true, new HashSet<DailyTimeEntry>());
             timeSheetRepository.save(ashuTimeSheet1);
 
             TimeSheet ashuTimeSheet2 = new TimeSheet(LocalDate.of(2020, 5, 31),
                     LocalDate.of(2020, 6, 6), ashu, 40, 10, 0,
                     0, 0, 0, 0, 0,
-                    0, 0, "", true, new HashSet<TestDailyTimeEntry>());
+                    0, 0, "", true, new HashSet<DailyTimeEntry>());
             timeSheetRepository.save(ashuTimeSheet2);
 
             TimeSheet bilenTimeSheet1 = new TimeSheet(LocalDate.of(2020, 5, 24),
                     LocalDate.of(2020, 5, 30), bilen, 40, 3, 0,
                     0, 0, 0, 0, 0,
-                    0, 0, "", true, new HashSet<TestDailyTimeEntry>());
+                    0, 0, "", true, new HashSet<DailyTimeEntry>());
             timeSheetRepository.save(bilenTimeSheet1);
 
             TimeSheet bilenTimeSheet2 = new TimeSheet(LocalDate.of(2020, 5, 31),
                     LocalDate.of(2020, 6, 6), bilen, 0, 0, 0,
                     0, 0, 0, 0, 40,
-                    0, 0, "", true, new HashSet<TestDailyTimeEntry>());
+                    0, 0, "", true, new HashSet<DailyTimeEntry>());
             timeSheetRepository.save(bilenTimeSheet2);
-
-
 
         };
     }

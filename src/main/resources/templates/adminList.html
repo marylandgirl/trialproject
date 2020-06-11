@@ -12,6 +12,7 @@
             justify-content: center;
 
         }
+
         img {
             max-width: 20%;
             max-height: 20%;
@@ -50,7 +51,7 @@
         </div>
 
         <!--Right Column-->
-        <div class="col-md-3 my-columns" >
+        <div class="col-md-3 my-columns">
             <h2>Right Column </h2>
             <h4>Timesheets in Queue</h4>
             <h4>Suspended</h4>
@@ -68,7 +69,7 @@
                 </tr>
                 <tr>
                     <td><h6><a href="">Pending Timesheets By Status</a></h6></td>
-<!--                    <td><h6><a th:href="@{/allTimesheets}">Audit All Timesheets</a></h6></td>-->
+                    <!--                    <td><h6><a th:href="@{/allTimesheets}">Audit All Timesheets</a></h6></td>-->
                 </tr>
             </table>
 
@@ -81,14 +82,14 @@
     <div class="row">
         <!--Left Column-->
         <div class="col-md-2 my-columns">
-        <!--Inside Left Column-->
+            <!--Inside Left Column-->
             <h5>LEFT</h5>
         </div>
 
 
         <!--Middle Column-->
         <div class="col-md-7 my-columns d-flex justify-content-center">
-        <!--Inside Middle Column-->
+            <!--Inside Middle Column-->
             <h5>MIDDLE</h5>
 
 
@@ -114,21 +115,24 @@
                             <td>[[${user.userName}]]</td>
                             <td>[[${user.email}]]</td>
                             <td>[[${user.enabled}]]</td>
-                            <td  style="text-align: right">
-                                <a class="btn btn-info btn-sm"  th:href = "@{/secure/{id}(id=${user.id})}" title="Detail">
+                            <td style="text-align: right">
+                                <a class="btn btn-info btn-sm" th:href="@{/secure/{id}(id=${user.id})}" title="Detail">
                                     <i class="fas fa-info-circle"></i>
                                 </a>
-                                <a class="btn btn-primary btn-sm"  th:href = "@{/disable-user/{id}(id=${user.id})}" title="Disable/Enable">
+                                <a class="btn btn-primary btn-sm" th:href="@{/disableUser/{id}(id=${user.id})}"
+                                   title="Disable/Enable">
                                     <i class="far fa-bell-slash"></i>
                                 </a>
                                 <!--                    <a class="btn btn-success btn-xs" th:href = "@{/detail-user/{id}(id=${user.id})}">Details</a>-->
-                                <a class="btn btn-danger btn-sm" style="color: lightcoral" th:href =
+                                <a class="btn btn-danger btn-sm" style="color: lightcoral" th:href=
                                         "@{/delete-user/{id}(id=${user.id})}"
-                                   onclick="if(!(confirm('Are you sure you want to delete this User?'))) return false" disabled title="Delete">
+                                   onclick="if(!(confirm('Are you sure you want to delete this User?'))) return false"
+                                   disabled title="Delete">
                                     <i class="fas fa-pencil-ruler"></i>
                                 </a>
 
-                                <a th:href="@{/promote-to-manager/{id}(id=${user.id})}" onclick="if(!(confirm('You are promoting this Employee to be MANAGER. Are you Sure?'))) return false">
+                                <a th:href="@{/promote-to-manager/{id}(id=${user.id})}"
+                                   onclick="if(!(confirm('You are promoting this Employee to be MANAGER. Are you Sure?'))) return false">
                                     <small>MAKE-MANAGER</small>
                                 </a>
                             </td>
@@ -139,30 +143,32 @@
             </div>
 
 
-
-
-
-
-
-
-
-
         </div>
-<!--immediately end of the middle column-->
+        <!--immediately end of the middle column-->
 
         <!--Right Column-->
-        <div class="col-md-3 my-columns" >
+        <div class="col-md-3 my-columns">
             <!--Inside Right Column-->
-            <h5>RIGHT</h5>
+            <h5>RIGHT2</h5>
+            <!--            <h5>RIGHT</h5>-->
+
+            <table class="table">
+                <tbody>
+                <tr th:each="user : ${allUsers}">
+                    <th:block th:if="${user.id} == ${loggedUser.id}">
+                        <td>[[${user.firstName}]]</td>
+                    </th:block>
+                </tr>
+                </tbody>
+            </table>
+
+
         </div>
-<!--        end of right column-->
+        <!--        end of right column-->
     </div>
-<!--    end of row div-->
+    <!--    end of row div-->
 </div>
 <!--end of container-fluid-->
-
-
-
 
 <div th:replace="base :: footer"></div>
 <div th:replace="base :: footer-scripts"></div>

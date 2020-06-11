@@ -1,6 +1,3 @@
-/**
- * This is the daily Timesheet
- */
 package com.example.demo.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -40,7 +37,7 @@ public class TimeSheet {
     private boolean enabled;
 
     @OneToMany(mappedBy = "timeSheet", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    Set<TestDailyTimeEntry> dailyTimeEntrySet;
+    Set<DailyTimeEntry> dailyTimeEntrySet;
 
     public TimeSheet() {
         dailyTimeEntrySet = new HashSet<>();
@@ -50,7 +47,7 @@ public class TimeSheet {
                      double overtimeHours, double holidayHours, double holidayWorkedHours,
                      double holidayOTHours, double leaveNoPayHours, double compTimeEarnedHours,
                      double compTimeUsedHours, double annualLeaveHours, int rejectCode, String rejectMsg,
-                     boolean enabled, Set<TestDailyTimeEntry> dailyTimeEntrySet) {
+                     boolean enabled, Set<DailyTimeEntry> dailyTimeEntrySet) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.employee = employee;
@@ -197,12 +194,65 @@ public class TimeSheet {
         this.enabled = enabled;
     }
 
-    public Set<TestDailyTimeEntry> getDailyTimeEntrySet() {
+    public void updateRegHours(double regHours) {
+
+        this.regHours += regHours;
+    }
+
+    public void updateOvertimeHours(double overtimeHours) {
+
+        this.overtimeHours += overtimeHours;
+    }
+
+    public void updateHolidayHours(double holidayHours) {
+
+        this.holidayHours += holidayHours;
+    }
+
+    public void updateHolidayWorkedHours(double holidayWorkedHours) {
+        this.holidayWorkedHours += holidayWorkedHours;
+    }
+
+    public void updateLeaveNoPayHours(double leaveNoPayHours) {
+
+        this.leaveNoPayHours += leaveNoPayHours;
+    }
+
+    public void updateCompTimeEarnedHours(double compTimeEarnedHours) {
+        this.compTimeEarnedHours += compTimeEarnedHours;
+    }
+
+    public void updateAnnualLeaveHours(double annualLeaveHours) {
+
+        this.annualLeaveHours += annualLeaveHours;
+    }
+
+    public void updateHolidayOTHours(double holidayOTHours) {
+
+        this.holidayOTHours = holidayOTHours;
+    }
+
+    public void updateCompTimeUsedHours(double compTimeUsedHours) {
+
+        this.compTimeUsedHours = compTimeUsedHours;
+    }
+
+    public Set<DailyTimeEntry> getDailyTimeEntrySet() {
         return dailyTimeEntrySet;
     }
 
-    public void setDailyTimeEntrySet(Set<TestDailyTimeEntry> dailyTimeEntrySet) {
+    public void setDailyTimeEntrySet(Set<DailyTimeEntry> dailyTimeEntrySet) {
         this.dailyTimeEntrySet = dailyTimeEntrySet;
     }
 
+    public String toString() {
+        return "Start date: " + startDate + " End date: " + endDate + " Employee: " +
+                employee.getFirstName() + " " + employee.getLastName() + " Regular hours: " +
+                regHours + " Overtime hours: " + overtimeHours + " Holiday hours: " +
+                holidayHours + " Holiday hours worked: " +
+                holidayWorkedHours + " Holiday OT hours: " + holidayOTHours +
+                " Leave W/O pay hours: " + leaveNoPayHours +
+                " Comp time earned hours: " + compTimeEarnedHours +
+                " Annual leave hours: " + annualLeaveHours;
+    }
 }
