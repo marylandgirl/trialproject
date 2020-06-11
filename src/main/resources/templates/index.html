@@ -78,10 +78,12 @@
             </thead>
             <tbody>
             <tr th:each="user : ${allUsers}">
+            <th:block th:if="${user.id} == ${loggedUser.id}">
                 <td>[[${user.firstName}]]</td>
                 <td>[[${user.lastName}]]</td>
                 <td>[[${user.userName}]]</td>
                 <td>[[${user.email}]]</td>
+
 <!--This information is made to be accessed on admin-list.html file-->
 <!--                <span th:each="role : ${roles}">-->
 <!--                    <span th:if="${role.role == 'ROLE_ADMIN'}">-->
@@ -113,8 +115,17 @@
 <!--                    </span>-->
 
 <!--                </td>-->
-            <td><a th:href="@{/timesheet/{id}(id=${user.id})}">NEW-TIMESHEET</a></td>
+
+            <td>
+                <a th:href="@{/timesheet/{id}(id=${user.id})}">NEW-TIMESHEET</a>
+<!--                this link leads to daily time entry form-->
+            </td>
+                <td>
+                    <a th:href="@{/timesheet/{id}(id=${user.id})}">PAY-STUB-STATUS</a>
+<!--                    this one is either to generate weekly pay stub or follow up the staus-->
+                </td>
             
+            </th:block>
             </tr>
             </tbody>
         </table>

@@ -1,3 +1,6 @@
+/**
+ * This is the daily Timesheet
+ */
 package com.example.demo.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -37,7 +40,7 @@ public class TimeSheet {
     private boolean enabled;
 
     @OneToMany(mappedBy = "timeSheet", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    Set<DailyTimeEntry> dailyTimeEntrySet;
+    Set<TestDailyTimeEntry> dailyTimeEntrySet;
 
     public TimeSheet() {
         dailyTimeEntrySet = new HashSet<>();
@@ -47,7 +50,7 @@ public class TimeSheet {
                      double overtimeHours, double holidayHours, double holidayWorkedHours,
                      double holidayOTHours, double leaveNoPayHours, double compTimeEarnedHours,
                      double compTimeUsedHours, double annualLeaveHours, int rejectCode, String rejectMsg,
-                     boolean enabled, Set<DailyTimeEntry> dailyTimeEntrySet) {
+                     boolean enabled, Set<TestDailyTimeEntry> dailyTimeEntrySet) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.employee = employee;
@@ -194,11 +197,11 @@ public class TimeSheet {
         this.enabled = enabled;
     }
 
-    public Set<DailyTimeEntry> getDailyTimeEntrySet() {
+    public Set<TestDailyTimeEntry> getDailyTimeEntrySet() {
         return dailyTimeEntrySet;
     }
 
-    public void setDailyTimeEntrySet(Set<DailyTimeEntry> dailyTimeEntrySet) {
+    public void setDailyTimeEntrySet(Set<TestDailyTimeEntry> dailyTimeEntrySet) {
         this.dailyTimeEntrySet = dailyTimeEntrySet;
     }
 

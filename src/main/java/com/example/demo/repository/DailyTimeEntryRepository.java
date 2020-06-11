@@ -1,7 +1,7 @@
 package com.example.demo.repository;
 
-import com.example.demo.model.DailyTimeEntry;
+import com.example.demo.model.TestDailyTimeEntry;
 import org.springframework.data.repository.CrudRepository;
 
-public interface DailyTimeEntryRepository extends CrudRepository<DailyTimeEntry,Long> {
+public interface DailyTimeEntryRepository extends CrudRepository<TestDailyTimeEntry,Long> {
 }

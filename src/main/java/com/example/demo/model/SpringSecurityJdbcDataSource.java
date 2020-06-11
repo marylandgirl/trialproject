@@ -1,7 +1,6 @@
 package com.example.demo.model;
 
 
-
 import com.example.demo.repository.*;
 
 import org.springframework.boot.CommandLineRunner;
@@ -20,14 +19,12 @@ public class SpringSecurityJdbcDataSource {
     }
 
 
-
     @Bean
     public CommandLineRunner run(UserRepository userRepository, RoleRepository roleRepository,
                                  EmployeeRepository employeeRepository, TimeSheetRepository timeSheetRepository,
                                  ManagerRepository managerRepository, DailyTimeEntryRepository dailyTimeEntryRepository,
                                  TestTimeSheetRepository testTimeSheetRepository) throws Exception {
-        return(String[] args) -> {
-
+        return (String[] args) -> {
 
 
             // insert first user hard code it
@@ -63,7 +60,6 @@ public class SpringSecurityJdbcDataSource {
 
             Role adminRole2 = new Role("super", "ROLE_USER");
             roleRepository.save(adminRole2);
-
 
 
             Manager managerSue = new Manager(new HashSet<Employee>());
@@ -107,46 +103,67 @@ public class SpringSecurityJdbcDataSource {
             TimeSheet ashuTimeSheet1 = new TimeSheet(LocalDate.of(2020, 5, 24),
                     LocalDate.of(2020, 5, 30), ashu, 40, 0, 0,
                     0, 0, 0, 0, 0,
-                    0, 0, "", true, new HashSet<DailyTimeEntry>());
+                    0, 0, "", true, new HashSet<TestDailyTimeEntry>());
             timeSheetRepository.save(ashuTimeSheet1);
 
             TimeSheet ashuTimeSheet2 = new TimeSheet(LocalDate.of(2020, 5, 31),
                     LocalDate.of(2020, 6, 6), ashu, 40, 10, 0,
                     0, 0, 0, 0, 0,
-                    0, 0, "", true, new HashSet<DailyTimeEntry>());
+                    0, 0, "", true, new HashSet<TestDailyTimeEntry>());
             timeSheetRepository.save(ashuTimeSheet2);
 
             TimeSheet bilenTimeSheet1 = new TimeSheet(LocalDate.of(2020, 5, 24),
                     LocalDate.of(2020, 5, 30), bilen, 40, 3, 0,
                     0, 0, 0, 0, 0,
-                    0, 0, "", true, new HashSet<DailyTimeEntry>());
+                    0, 0, "", true, new HashSet<TestDailyTimeEntry>());
             timeSheetRepository.save(bilenTimeSheet1);
 
             TimeSheet bilenTimeSheet2 = new TimeSheet(LocalDate.of(2020, 5, 31),
                     LocalDate.of(2020, 6, 6), bilen, 0, 0, 0,
                     0, 0, 0, 0, 40,
-                    0, 0, "", true, new HashSet<DailyTimeEntry>());
+                    0, 0, "", true, new HashSet<TestDailyTimeEntry>());
             timeSheetRepository.save(bilenTimeSheet2);
 
 
-            DailyTimeEntry ashuDayThreeWk1 = new DailyTimeEntry(LocalDate.of(2020, 5, 27),
+            TestDailyTimeEntry ashuDayThreeWk1 = new TestDailyTimeEntry(LocalDate.of(2020, 5, 27),
                     8, 1, 0, 0, 0, 0,
                     0, 0, 0, ashuTimeSheet1);
             dailyTimeEntryRepository.save(ashuDayThreeWk1);
 
-            DailyTimeEntry ashuDayThreeWk2 = new DailyTimeEntry(LocalDate.of(2020, 6, 2),
+            TestDailyTimeEntry ashuDayThreeWk2 = new TestDailyTimeEntry(LocalDate.of(2020, 6, 2),
                     4, 0, 0, 0, 0, 0,
                     0, 0, 4, ashuTimeSheet2);
             dailyTimeEntryRepository.save(ashuDayThreeWk2);
 
 
-                        TestTimesheet testTimesheetWeek1 = new TestTimesheet(20, 20,
-                                1000.00);
+            TestTimesheet testTimesheetWeek1 = new TestTimesheet(employeeRepository.findByUserName("ashu").getId(), 20, 20,
+                    1000.00);
             testTimeSheetRepository.save(testTimesheetWeek1);
 
-TestTimesheet testTimesheetWeek2 = new TestTimesheet(30, 15,
-                                2625.00);
+            TestTimesheet testTimesheetWeek2 = new TestTimesheet(employeeRepository.findByUserName("ashu").getId(), 30, 15,
+                    2625.00);
             testTimeSheetRepository.save(testTimesheetWeek2);
+
+            TestTimesheet testTimesheetWeek3 = new TestTimesheet(employeeRepository.findByUserName("bilen").getId(), 30, 15,
+                    2625.00);
+            testTimeSheetRepository.save(testTimesheetWeek3);
+
+            TestTimesheet testTimesheetWeek4 = new TestTimesheet(employeeRepository.findByUserName("sue").getId(), 30, 15,
+                    2625.00);
+            testTimeSheetRepository.save(testTimesheetWeek4);
+
+            TestTimesheet testTimesheetWeek5 = new TestTimesheet(employeeRepository.findByUserName("ashu").getId(), 30, 15,
+                    2625.00);
+            testTimeSheetRepository.save(testTimesheetWeek5);
+
+            TestTimesheet testTimesheetWeek6 = new TestTimesheet(employeeRepository.findByUserName("bilen").getId(), 30, 15,
+                    2625.00);
+            testTimeSheetRepository.save(testTimesheetWeek6);
+
+            TestTimesheet testTimesheetWeek7 = new TestTimesheet(employeeRepository.findByUserName("sue").getId(), 30, 15,
+                    2625.00);
+            testTimeSheetRepository.save(testTimesheetWeek7);
+
 
 
 

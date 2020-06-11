@@ -11,6 +11,7 @@ public class TestTimesheet {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    private long employeeId;
 
     private double regularHours;
     private double overtimeHours;
@@ -19,7 +20,7 @@ public class TestTimesheet {
     public TestTimesheet() {
     }
 
-    public TestTimesheet(double regularHours, double overtimeHours, double totalPayForThisPeriod) {
+    public TestTimesheet(long employeeId, double regularHours, double overtimeHours, double totalPayForThisPeriod) {
         this.regularHours = regularHours;
         this.overtimeHours = overtimeHours;
         this.totalPayForThisPeriod = totalPayForThisPeriod;
@@ -31,6 +32,14 @@ public class TestTimesheet {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public long getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(long employeeId) {
+        this.employeeId = employeeId;
     }
 
     public double getRegularHours() {

@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-public class DailyTimeEntry {
+public class TestDailyTimeEntry {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,13 +29,13 @@ public class DailyTimeEntry {
     @JoinColumn(name = "timeSheet_id")
     private TimeSheet timeSheet;
 
-    public DailyTimeEntry() {
+    public TestDailyTimeEntry() {
     }
 
-    public DailyTimeEntry(LocalDate workDate, double regHours, double overtimeHours, double holidayHours,
-                          double holidayWorkedHours, double holidayOTHours, double leaveNoPayHours,
-                          double compTimeEarnedHours, double compTimeUsedHours, double leaveHours,
-                          TimeSheet timeSheet) {
+    public TestDailyTimeEntry(LocalDate workDate, double regHours, double overtimeHours, double holidayHours,
+                              double holidayWorkedHours, double holidayOTHours, double leaveNoPayHours,
+                              double compTimeEarnedHours, double compTimeUsedHours, double leaveHours,
+                              TimeSheet timeSheet) {
         this.workDate = workDate;
         this.regHours = regHours;
         this.overtimeHours = overtimeHours;

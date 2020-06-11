@@ -42,19 +42,34 @@
                             <div class="w3-center">You have been logged out.</div><br/><br/>
                         </div>
 
-                        <form th:action="@{/process-timesheet}" th:object = "${timesheet}" method="post">
+                        <th:block th:action="@{/submit-timesheet/{id}(id=${timesheet.id})}" th:object = "${timesheet}" method="post">
                             <input type="hidden" th:field="*{id}">
                             <label>Regular hours worked in a week/two</label>
                             <input type="number" class="w3-input w3-border w3-padding" th:field="*{regularHours}"><br/>
                             <label>Overtime ... hrs worked in a week or two</label>
                             <input type="number" class="w3-input w3-border w3-padding" th:field="*{overtimeHours}"><br/>
 
-                            <div class="w3-center">
-                                <button type="submit" class="w3-button w3-theme">
-                                    <i class="fa fa-pencil"></i> Submit
-                                </button>
-                            </div>
-                        </form>
+                                <div class="w3-center">
+                                    <div class="row">
+                                        <div class="col-md-6">
+<!--                                            <form th:action="@{/save-timesheet/{id}(id=${loggedUser.id})}">-->
+<!--                                                <button type="submit" class="w3-button w3-theme">-->
+<!--                                                    <i class="fas fa-save"></i> Save-->
+<!--                                                </button>-->
+<!--                                            </form>-->
+                                            <a class="btn btn-success" th:href="@{/save-timesheet/{id}(id=${timesheet.id})}" th:method="post" role="button">Save</a>
+                                        </div>
+
+                                        <div class="col-md-6">
+<!--                                            <button type="submit" class="w3-button w3-theme" style="color: red">-->
+<!--                                                <i class="fas fa-file-export"></i> Submit-->
+<!--                                            </button>-->
+                                            <a class="btn btn-danger" th:href="@{/submit-timesheet/{id}(id=${timesheet.id})}" th:method="post"  role="button">Submit</a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                        </th:block>
                     </div>
                 </div>
             </div>

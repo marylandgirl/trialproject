@@ -54,7 +54,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .loginPage("/login").permitAll()
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login?logout=true").permitAll();
+                .logoutSuccessUrl("/logoutsuccess").permitAll();
+//                .logoutSuccessUrl("/login?logout=true").permitAll();
 
         //The following two line of code are mandatory to access
         // h2-console even if you are authorized.

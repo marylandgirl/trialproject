@@ -67,8 +67,7 @@
                     <td><h6><a th:href="@{/audit-trail}">Audit Tracker</a></h6></td>
                 </tr>
                 <tr>
-                    <td><h6><a href="">Pending Timesheets By Status</a></h6></td>
-<!--                    <td><h6><a th:href="@{/allTimesheets}">Audit All Timesheets</a></h6></td>-->
+                    <td><h6><a href="#">Audit All Worksheets</a></h6></td>
                 </tr>
             </table>
 
@@ -81,14 +80,14 @@
     <div class="row">
         <!--Left Column-->
         <div class="col-md-2 my-columns">
-        <!--Inside Left Column-->
+            <!--Inside Left Column-->
             <h5>LEFT</h5>
         </div>
 
 
         <!--Middle Column-->
         <div class="col-md-7 my-columns d-flex justify-content-center">
-        <!--Inside Middle Column-->
+            <!--Inside Middle Column-->
             <h5>MIDDLE</h5>
 
 
@@ -148,16 +147,52 @@
 
 
         </div>
-<!--immediately end of the middle column-->
+        <!--immediately end of the middle column-->
 
         <!--Right Column-->
         <div class="col-md-3 my-columns" >
             <!--Inside Right Column-->
             <h5>RIGHT</h5>
+            <table class="table" style="width:90%" border="0">
+                <tbody>
+
+                <tr th:each="user : ${allUsers}">
+                    <th:block th:if="${user.id} == ${timesheet.employeeId}">
+                            [[${user.lastName}]] <span style="color: white">-</span>[[${user.firstName}]]
+
+                    </th:block>
+                </tr>
+                </tbody>
+            </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         </div>
-<!--        end of right column-->
+        <!--        end of right column-->
     </div>
-<!--    end of row div-->
+    <!--    end of row div-->
 </div>
 <!--end of container-fluid-->
 

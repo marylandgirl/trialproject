@@ -1,12 +1,11 @@
 package com.example.demo.model;
 
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.time.LocalDate;
+
 
 @Entity
 public class AuditTrail {
@@ -15,9 +14,65 @@ public class AuditTrail {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @DateTimeFormat(iso=DateTimeFormat.ISO.TIME, pattern = "yyyy-MM-dd" )
-    private LocalDate dateAccessed;
+    private long staffId;       // foreign key
+    private long timesheetId;       // foreign key
 
-    private int stage;                   //created=1,edited=2,approved=3,rejected=4,archived=5
+    private String action;      //"logged_in", "logged_out", "timesheet_started", "timesheet_saved",
+                                // "timesheet_submitted", "timesheet_approved", "timesheet_rejected"
+    private String timeOfAction;
+//    private String empFirstName;
+//    private String empLastName;
 
+//    private int timeStage;                   //created=1,edited=2,approved=3,rejected=4,archived=5
+
+    public AuditTrail() {
+    }
+
+    public AuditTrail(long staffId, long timesheetId, String action, String timeOfAction) {
+        this.staffId = staffId;
+        this.action = action;
+        this.timeOfAction = timeOfAction;
+        this.timesheetId = timesheetId;
+
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getStaffId() {
+        return staffId;
+    }
+
+    public void setStaffId(long staffId) {
+        this.staffId = staffId;
+    }
+
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
+    }
+
+    public String getTimeOfAction() {
+        return timeOfAction;
+    }
+
+    public void setTimeOfAction(String timeOfAction) {
+        this.timeOfAction = timeOfAction;
+    }
+
+    public long getTimesheetId() {
+        return timesheetId;
+    }
+
+    public void setTimesheetId(long timesheetId) {
+        this.timesheetId = timesheetId;
+    }
 }

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<head>
+    <meta charset="UTF-8">
+    <title>admin</title>
+    <th:block th:insert="base :: headStuff"></th:block>
+    <style>
+        .my-columns {
+            border: black 1px solid;
+            padding: 0%;
+            margin: 0%;
+            justify-content: center;
+
+        }
+        img {
+            max-width: 20%;
+            max-height: 20%;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<!-- Navbar -->
+<nav th:replace="base :: navlinks"></nav>
+<div class="container-fluid" style="background-color: coral">
+    <div class="row">
+        <!--Left Column-->
+        <div class="col-md-2 my-columns d-flex justify-content-center">
+            <br/>
+            <br/>
+            <h3>KAB</h3>
+            <p>The Logo name KAB stands for the three owners of this Company Kim, Ashu and Bilen.
+                Our Company believes in team work so that no one is left behind.
+                we work together and enjoy the fruit together.
+                We are stronger when we are together.
+            </p>
+            <img src="coffee.jpg" alt="">
+        </div>
+
+
+        <!--Middle Column-->
+        <div class="col-md-7 my-columns d-flex justify-content-center">
+
+            <h1>Employees' Log Audit Trail</h1>
+            <br/>
+            <br/>
+            <br/>
+
+
+        </div>
+
+        <!--Right Column-->
+        <div class="col-md-3 my-columns" >
+            <h2>Log History By Group </h2>
+            <h4>By Employee</h4>
+            <h4>By Action</h4>
+            <h4>By Timesheet</h4>
+            <p>=============================</p>
+
+            <table>
+                <tr>
+                    <td><h1>[[${qtyOfPendingTimesheets}]]</h1></td>
+                    <td>Pending Timesheets</td>
+                </tr>
+                <tr>
+                    <td><h3>Audit Tracker</h3></td>
+                </tr>
+            </table>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="container">
+    <div class="col-lg-12">
+        <table class="table" style="width:90%" border="0">
+            <thead class="thread-dark">
+            <tr>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Action</th>
+                <th scope="col">Time Of Action</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="audit : ${allAudits}">
+                <th:block th:each="employee : ${allEmployeesLogged}">
+                    <span th:if="${audit.staffId} == ${employee.id}">
+
+                        <td>[[${employee.firstName}]]</td>
+                        <td>[[${employee.lastName}]]</td>
+
+                        <td>[[${audit.action}]]</td>
+                        <td>[[${audit.timeOfAction}]]</td>
+                        </span>
+                </th:block>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div th:replace="base :: footer"></div>
+<div th:replace="base :: footer-scripts"></div>
+
+</body>
+</html>

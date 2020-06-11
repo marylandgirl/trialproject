@@ -53,10 +53,6 @@ public class Employee {
     }
 
 
-
-
-
-
     public Employee(String userName, String password, String lastName, String firstName, String email,
                     double payRate, boolean enabled, Manager manager) {
         this.userName = userName;
