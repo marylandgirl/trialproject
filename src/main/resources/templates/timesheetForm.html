@@ -1,0 +1,1170 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Time sheet</title>
+</head>
+<body>
+<div class="container">
+    <h1>Time Sheet</h1>
+    <h2 th:text="${#temporals.format(start)} + '&nbsp;To&nbsp;' +  ${#temporals.format(end)}">Start Dt: 1/1/2000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;End Dt: 1/7/2000</h2>
+    <form action="#" th:action="@{/processtime}" th:method="post" th:object="${timeEntries}">
+        <div class="form-row"> <!--row 1 start-->
+            <div class="col">
+                <label>Day of Week</label>
+            </div>
+            <div class="col">
+                <label>RegTime Start</label>
+            </div>
+            <div class="col">
+                <label>RegTime End</label>
+            </div>
+            <div class="col">
+                <label>Overtime Start</label>
+            </div>
+            <div class="col">
+                <label>Overtime End</label>
+            </div>
+            <div class="col">
+                <label>Paid Holiday Start</label>
+            </div>
+            <div class="col">
+                <label>Paid Holiday End</label>
+            </div>
+        </div><!--row 1 end-->
+        <br/>
+        <div class="form-row"><!--row 2 start-->
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Monday" readonly>
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Regular Time Start"
+                       th:field="${timeEntries.regTimeStart[0]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Regular Time End"
+                       th:field="${timeEntries.regTimeEnd[0]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Overtime Start"
+                       th:field="${timeEntries.overtimeStart[0]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Overtime End"
+                       th:field="${timeEntries.overtimeEnd[0]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Paid Holiday Start"
+                       th:field="${timeEntries.paidHdyStart[0]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Paid Holiday End"
+                       th:field="${timeEntries.paidHdyEnd[0]}">
+            </div>
+        </div><!--row 2 end-->
+        <br />
+        <div class="form-row"><!--row 3 start-->
+            <div class="col">
+                <label hidden>Day of Week</label>
+            </div>
+            <div class="col">
+                <label>Holiday Worked Start</label>
+            </div>
+            <div class="col">
+                <label>Holiday Worked End</label>
+            </div>
+            <div class="col">
+                <label>Leave W/O Pay Start</label>
+            </div>
+            <div class="col">
+                <label>Leave W/O Pay End</label>
+            </div>
+            <div class="col">
+                <label>Comp Time Earned Start</label>
+            </div>
+            <div class="col">
+                <label>Comp Time Earned End</label>
+            </div>
+        </div><!--row 3 end-->
+        <br />
+        <div class="form-row"><!--row 4 start-->
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Monday" readonly>
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Holiday Worked Start"
+                       th:field="${timeEntries.hdyWorkedStart[0]}">
+            </div>
+
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Holiday Worked End"
+                       th:field="${timeEntries.hdyWorkedEnd[0]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Leave W/O Pay Start"
+                       th:field="${timeEntries.leaveWOPayStart[0]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Leave W/O Pay End"
+                       th:field="${timeEntries.leaveWOPayEnd[0]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Comp Time Earned Start"
+                       th:field="${timeEntries.compTimeEarnedStart[0]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Comp Time Earned End"
+                       th:field="${timeEntries.compTimeEarnedEnd[0]}">
+            </div>
+        </div><!--row 4 end-->
+        <br />
+        <div class="form-row"><!--row 5 start-->
+            <div class="col">
+                <label hidden>Day of Week</label>
+            </div>
+            <div class="col">
+                <label>Annual Leave Start</label>
+            </div>
+            <div class="col">
+                <label>Annual Leave End</label>
+            </div>
+            <div class="col">
+                <label>Comp Time Used Start</label>
+            </div>
+            <div class="col">
+                <label>Comp Time Used End</label>
+            </div>
+            <div class="col">
+                <label>Holiday OT Start</label>
+            </div>
+            <div class="col">
+                <label>Holiday OT End</label>
+            </div>
+        </div><!--row 5 end-->
+        <br/>
+        <div class="form-row"><!--row 6 start-->
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Monday" readonly>
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Annual Leave Start"
+                       th:field="${timeEntries.annualLeaveStart[0]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Annual Leave End"
+                       th:field="${timeEntries.annualLeaveEnd[0]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Comp Time Used Start"
+                       th:field="${timeEntries.compTimeUsedStart[0]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Comp Time Used End"
+                       th:field="${timeEntries.compTimeUsedEnd[0]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Holiday OT Start"
+                       th:field="${timeEntries.holidayOTStart[0]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Holiday OT End"
+                       th:field="${timeEntries.holidayOTEnd[0]}">
+            </div>
+        </div><!--row 6 end-->
+        <br />
+        <hr>
+        <div class="form-row"> <!--row 7 start-->
+            <div class="col">
+                <label>Day of Week</label>
+            </div>
+            <div class="col">
+                <label>RegTime Start</label>
+            </div>
+            <div class="col">
+                <label>RegTime End</label>
+            </div>
+            <div class="col">
+                <label>Overtime Start</label>
+            </div>
+            <div class="col">
+                <label>Overtime End</label>
+            </div>
+            <div class="col">
+                <label>Paid Holiday Start</label>
+            </div>
+            <div class="col">
+                <label>Paid Holiday End</label>
+            </div>
+        </div><!--row 7 end-->
+        <br />
+        <div class="form-row"><!--row 8 start-->
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Tuesday" readonly>
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Regular Time Start"
+                       th:field="${timeEntries.regTimeStart[1]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Regular Time End"
+                       th:field="${timeEntries.regTimeEnd[1]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Overtime Start"
+                       th:field="${timeEntries.overtimeStart[1]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Overtime End"
+                       th:field="${timeEntries.overtimeEnd[1]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Paid Holiday Start"
+                       th:field="${timeEntries.paidHdyStart[1]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Paid Holiday End"
+                       th:field="${timeEntries.paidHdyEnd[1]}">
+            </div>
+        </div><!--row 8 end-->
+        <br />
+        <div class="form-row"><!--row 9 start-->
+            <div class="col">
+                <label hidden>Day of Week</label>
+            </div>
+            <div class="col">
+                <label>Holiday Worked Start</label>
+            </div>
+            <div class="col">
+                <label>Holiday Worked End</label>
+            </div>
+            <div class="col">
+                <label>Leave W/O Pay Start</label>
+            </div>
+            <div class="col">
+                <label>Leave W/O Pay End</label>
+            </div>
+            <div class="col">
+                <label>Comp Time Earned Start</label>
+            </div>
+            <div class="col">
+                <label>Comp Time Earned End</label>
+            </div>
+        </div><!--row 9 end-->
+        <br />
+        <div class="form-row"><!--row 10 start-->
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Tuesday" readonly>
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Holiday Worked Start"
+                       th:field="${timeEntries.hdyWorkedStart[1]}">
+            </div>
+
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Holiday Worked End"
+                       th:field="${timeEntries.hdyWorkedEnd[1]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Leave W/O Pay Start"
+                       th:field="${timeEntries.leaveWOPayStart[1]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Leave W/O Pay End"
+                       th:field="${timeEntries.leaveWOPayEnd[1]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Comp Time Earned Start"
+                       th:field="${timeEntries.compTimeEarnedStart[1]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Comp Time Earned End"
+                       th:field="${timeEntries.compTimeEarnedEnd[1]}">
+            </div>
+        </div><!--row 10 end-->
+        <br />
+        <div class="form-row"><!--row 11 start-->
+            <div class="col">
+                <label hidden>Day of Week</label>
+            </div>
+            <div class="col">
+                <label>Annual Leave Start</label>
+            </div>
+            <div class="col">
+                <label>Annual Leave End</label>
+            </div>
+            <div class="col">
+                <label>Comp Time Used Start</label>
+            </div>
+            <div class="col">
+                <label>Comp Time Used End</label>
+            </div>
+            <div class="col">
+                <label>Holiday OT Start</label>
+            </div>
+            <div class="col">
+                <label>Holiday OT End</label>
+            </div>
+        </div><!--row 11 end-->
+        <br />
+        <div class="form-row"><!--row 12 start-->
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Tuesday" readonly>
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Annual Leave Start"
+                       th:field="${timeEntries.annualLeaveStart[1]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Annual Leave End"
+                       th:field="${timeEntries.annualLeaveEnd[1]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Comp Time Used Start"
+                       th:field="${timeEntries.compTimeUsedStart[1]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Comp Time Used End"
+                       th:field="${timeEntries.compTimeUsedEnd[1]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Holiday OT Start"
+                       th:field="${timeEntries.holidayOTStart[1]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Holiday OT End"
+                       th:field="${timeEntries.holidayOTEnd[1]}">
+            </div>
+        </div><!--row 12 end-->
+        <hr>
+        <div class="form-row"> <!--row 13 start-->
+            <div class="col">
+                <label>Day of Week</label>
+            </div>
+            <div class="col">
+                <label>RegTime Start</label>
+            </div>
+            <div class="col">
+                <label>RegTime End</label>
+            </div>
+            <div class="col">
+                <label>Overtime Start</label>
+            </div>
+            <div class="col">
+                <label>Overtime End</label>
+            </div>
+            <div class="col">
+                <label>Paid Holiday Start</label>
+            </div>
+            <div class="col">
+                <label>Paid Holiday End</label>
+            </div>
+        </div><!--row 13 end-->
+        <br />
+        <div class="form-row"><!--row 14 start-->
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Wednesday" readonly>
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Regular Time Start"
+                       th:field="${timeEntries.regTimeStart[2]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Regular Time End"
+                       th:field="${timeEntries.regTimeEnd[2]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Overtime Start"
+                       th:field="${timeEntries.overtimeStart[2]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Overtime End"
+                       th:field="${timeEntries.overtimeEnd[2]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Paid Holiday Start"
+                       th:field="${timeEntries.paidHdyStart[2]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Paid Holiday End"
+                       th:field="${timeEntries.paidHdyEnd[2]}">
+            </div>
+        </div><!--row 14 end-->
+        <br />
+        <div class="form-row"><!--row 15 start-->
+            <div class="col">
+                <label hidden>Day of Week</label>
+            </div>
+            <div class="col">
+                <label>Holiday Worked Start</label>
+            </div>
+            <div class="col">
+                <label>Holiday Worked End</label>
+            </div>
+            <div class="col">
+                <label>Leave W/O Pay Start</label>
+            </div>
+            <div class="col">
+                <label>Leave W/O Pay End</label>
+            </div>
+            <div class="col">
+                <label>Comp Time Earned Start</label>
+            </div>
+            <div class="col">
+                <label>Comp Time Earned End</label>
+            </div>
+        </div><!--row 15 end-->
+        <br />
+        <div class="form-row"><!--row 16 start-->
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Wednesday" readonly>
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Holiday Worked Start"
+                       th:field="${timeEntries.hdyWorkedStart[2]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Holiday Worked End"
+                       th:field="${timeEntries.hdyWorkedEnd[2]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Leave W/O Pay Start"
+                       th:field="${timeEntries.leaveWOPayStart[2]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Leave W/O Pay End"
+                       th:field="${timeEntries.leaveWOPayEnd[2]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Comp Time Earned Start"
+                       th:field="${timeEntries.compTimeEarnedStart[2]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Comp Time Earned End"
+                       th:field="${timeEntries.compTimeEarnedEnd[2]}">
+            </div>
+        </div><!--row 16 end-->
+        <br />
+        <div class="form-row"><!--row 17 start-->
+            <div class="col">
+                <label hidden>Day of Week</label>
+            </div>
+            <div class="col">
+                <label>Annual Leave Start</label>
+            </div>
+            <div class="col">
+                <label>Annual Leave End</label>
+            </div>
+            <div class="col">
+                <label>Comp Time Used Start</label>
+            </div>
+            <div class="col">
+                <label>Comp Time Used End</label>
+            </div>
+            <div class="col">
+                <label>Holiday OT Start</label>
+            </div>
+            <div class="col">
+                <label>Holiday OT End</label>
+            </div>
+        </div><!--row 17 end-->
+        <br />
+        <div class="form-row"><!--row 18 start-->
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Wednesday" readonly>
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Annual Leave Start"
+                       th:field="${timeEntries.annualLeaveStart[2]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Annual Leave End"
+                       th:field="${timeEntries.annualLeaveEnd[2]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Comp Time Used Start"
+                       th:field="${timeEntries.compTimeUsedStart[2]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Comp Time Used End"
+                       th:field="${timeEntries.compTimeUsedEnd[2]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Holiday OT Start"
+                       th:field="${timeEntries.holidayOTStart[2]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Holiday OT End"
+                       th:field="${timeEntries.holidayOTEnd[2]}">
+            </div>
+        </div><!--row 18 end-->
+        <hr />
+        <div class="form-row"> <!--row 19 start-->
+            <div class="col">
+                <label>Day of Week</label>
+            </div>
+            <div class="col">
+                <label>RegTime Start</label>
+            </div>
+            <div class="col">
+                <label>RegTime End</label>
+            </div>
+            <div class="col">
+                <label>Overtime Start</label>
+            </div>
+            <div class="col">
+                <label>Overtime End</label>
+            </div>
+            <div class="col">
+                <label>Paid Holiday Start</label>
+            </div>
+            <div class="col">
+                <label>Paid Holiday End</label>
+            </div>
+        </div><!--row 19 end-->
+        <br />
+        <div class="form-row"><!--row 20 start-->
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Thursday" readonly>
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Regular Time Start"
+                       th:field="${timeEntries.regTimeStart[3]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Regular Time End"
+                       th:field="${timeEntries.regTimeEnd[3]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Overtime Start"
+                       th:field="${timeEntries.overtimeStart[3]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Overtime End"
+                       th:field="${timeEntries.overtimeEnd[3]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Paid Holiday Start"
+                       th:field="${timeEntries.paidHdyStart[3]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Paid Holiday End"
+                       th:field="${timeEntries.paidHdyEnd[3]}">
+            </div>
+        </div><!--row 20 end-->
+        <br />
+        <div class="form-row"><!--row 21 start-->
+            <div class="col">
+                <label hidden>Day of Week</label>
+            </div>
+            <div class="col">
+                <label>Holiday Worked Start</label>
+            </div>
+            <div class="col">
+                <label>Holiday Worked End</label>
+            </div>
+            <div class="col">
+                <label>Leave W/O Pay Start</label>
+            </div>
+            <div class="col">
+                <label>Leave W/O Pay End</label>
+            </div>
+            <div class="col">
+                <label>Comp Time Earned Start</label>
+            </div>
+            <div class="col">
+                <label>Comp Time Earned End</label>
+            </div>
+        </div><!--row 21 end-->
+        <br />
+        <div class="form-row"><!--row 22 start-->
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Thusday" readonly>
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Holiday Worked Start"
+                       th:field="${timeEntries.hdyWorkedStart[3]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Holiday Worked End"
+                       th:field="${timeEntries.hdyWorkedEnd[3]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Leave W/O Pay Start"
+                       th:field="${timeEntries.leaveWOPayStart[3]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Leave W/O Pay End"
+                       th:field="${timeEntries.leaveWOPayEnd[3]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Comp Time Earned Start"
+                       th:field="${timeEntries.compTimeEarnedStart[3]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Comp Time Earned End"
+                       th:field="${timeEntries.compTimeEarnedEnd[3]}">
+            </div>
+        </div><!--row 22 end-->
+        <br />
+        <div class="form-row"><!--row 23 start-->
+            <div class="col">
+                <label hidden>Day of Week</label>
+            </div>
+            <div class="col">
+                <label>Annual Leave Start</label>
+            </div>
+            <div class="col">
+                <label>Annual Leave End</label>
+            </div>
+            <div class="col">
+                <label>Comp Time Used Start</label>
+            </div>
+            <div class="col">
+                <label>Comp Time Used End</label>
+            </div>
+            <div class="col">
+                <label>Holiday OT Start</label>
+            </div>
+            <div class="col">
+                <label>Holiday OT End</label>
+            </div>
+        </div><!--row 23 end-->
+        <br />
+        <div class="form-row"><!--row 24 start-->
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Thursday" readonly>
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Annual Leave Start"
+                       th:field="${timeEntries.annualLeaveStart[3]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Annual Leave End"
+                       th:field="${timeEntries.annualLeaveEnd[3]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Comp Time Used Start"
+                       th:field="${timeEntries.compTimeUsedStart[3]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Comp Time Used End"
+                       th:field="${timeEntries.compTimeUsedEnd[3]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Holiday OT Start"
+                       th:field="${timeEntries.holidayOTStart[3]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Holiday OT End"
+                       th:field="${timeEntries.holidayOTEnd[3]}">
+            </div>
+        </div><!--row 24 end-->
+        <hr>
+        <div class="form-row"> <!--row 25 start-->
+            <div class="col">
+                <label>Day of Week</label>
+            </div>
+            <div class="col">
+                <label>RegTime Start</label>
+            </div>
+            <div class="col">
+                <label>RegTime End</label>
+            </div>
+            <div class="col">
+                <label>Overtime Start</label>
+            </div>
+            <div class="col">
+                <label>Overtime End</label>
+            </div>
+            <div class="col">
+                <label>Paid Holiday Start</label>
+            </div>
+            <div class="col">
+                <label>Paid Holiday End</label>
+            </div>
+        </div><!--row 25 end-->
+        <br />
+        <div class="form-row"><!--row 26 start-->
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Friday" readonly>
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Regular Time Start"
+                       th:field="${timeEntries.regTimeStart[4]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Regular Time End"
+                       th:field="${timeEntries.regTimeEnd[4]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Overtime Start"
+                       th:field="${timeEntries.overtimeStart[4]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Overtime End"
+                       th:field="${timeEntries.overtimeEnd[4]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Paid Holiday Start"
+                       th:field="${timeEntries.paidHdyStart[4]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Paid Holiday End"
+                       th:field="${timeEntries.paidHdyEnd[4]}">
+            </div>
+        </div><!--row 26 end-->
+        <br />
+        <div class="form-row"><!--row 27 start-->
+            <div class="col">
+                <label hidden>Day of Week</label>
+            </div>
+            <div class="col">
+                <label>Holiday Worked Start</label>
+            </div>
+            <div class="col">
+                <label>Holiday Worked End</label>
+            </div>
+            <div class="col">
+                <label>Leave W/O Pay Start</label>
+            </div>
+            <div class="col">
+                <label>Leave W/O Pay End</label>
+            </div>
+            <div class="col">
+                <label>Comp Time Earned Start</label>
+            </div>
+            <div class="col">
+                <label>Comp Time Earned End</label>
+            </div>
+        </div><!--row 27 end-->
+        <br />
+        <div class="form-row"><!--row 28 start-->
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Friday" readonly>
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Holiday Worked Start"
+                       th:field="${timeEntries.hdyWorkedStart[4]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Holiday Worked End"
+                       th:field="${timeEntries.hdyWorkedEnd[4]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Leave W/O Pay Start"
+                       th:field="${timeEntries.leaveWOPayStart[4]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Leave W/O Pay End"
+                       th:field="${timeEntries.leaveWOPayEnd[4]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Comp Time Earned Start"
+                       th:field="${timeEntries.compTimeEarnedStart[4]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Comp Time Earned End"
+                       th:field="${timeEntries.compTimeEarnedEnd[4]}">
+            </div>
+        </div><!--row 28 end-->
+        <br />
+        <div class="form-row"><!--row 29 start-->
+            <div class="col">
+                <label hidden>Day of Week</label>
+            </div>
+            <div class="col">
+                <label>Annual Leave Start</label>
+            </div>
+            <div class="col">
+                <label>Annual Leave End</label>
+            </div>
+            <div class="col">
+                <label>Comp Time Used Start</label>
+            </div>
+            <div class="col">
+                <label>Comp Time Used End</label>
+            </div>
+            <div class="col">
+                <label>Holiday OT Start</label>
+            </div>
+            <div class="col">
+                <label>Holiday OT End</label>
+            </div>
+        </div><!--row 29 end-->
+        <br />
+        <div class="form-row"><!--row 30 start-->
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Friday" readonly>
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Annual Leave Start"
+                       th:field="${timeEntries.annualLeaveStart[4]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Annual Leave End"
+                       th:field="${timeEntries.annualLeaveEnd[4]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Comp Time Used Start"
+                       th:field="${timeEntries.compTimeUsedStart[4]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Comp Time Used End"
+                       th:field="${timeEntries.compTimeUsedEnd[4]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Holiday OT Start"
+                       th:field="${timeEntries.holidayOTStart[4]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Holiday OT End"
+                       th:field="${timeEntries.holidayOTEnd[4]}">
+            </div>
+        </div><!--row 30 end-->
+        <hr>
+        <div class="form-row"> <!--row 31 start-->
+            <div class="col">
+                <label>Day of Week</label>
+            </div>
+            <div class="col">
+                <label>RegTime Start</label>
+            </div>
+            <div class="col">
+                <label>RegTime End</label>
+            </div>
+            <div class="col">
+                <label>Overtime Start</label>
+            </div>
+            <div class="col">
+                <label>Overtime End</label>
+            </div>
+            <div class="col">
+                <label>Paid Holiday Start</label>
+            </div>
+            <div class="col">
+                <label>Paid Holiday End</label>
+            </div>
+        </div><!--row 31 end-->
+        <br />
+        <div class="form-row"><!--row 32 start-->
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Saturday" readonly>
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Regular Time Start"
+                       th:field="${timeEntries.regTimeStart[5]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Regular Time End"
+                       th:field="${timeEntries.regTimeEnd[5]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Overtime Start"
+                       th:field="${timeEntries.overtimeStart[5]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Overtime End"
+                       th:field="${timeEntries.overtimeEnd[5]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Paid Holiday Start"
+                       th:field="${timeEntries.paidHdyStart[5]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Paid Holiday End"
+                       th:field="${timeEntries.paidHdyEnd[5]}">
+            </div>
+        </div><!--row 32 end-->
+        <br />
+        <div class="form-row"><!--row 33 start-->
+            <div class="col">
+                <label hidden>Day of Week</label>
+            </div>
+            <div class="col">
+                <label>Holiday Worked Start</label>
+            </div>
+            <div class="col">
+                <label>Holiday Worked End</label>
+            </div>
+            <div class="col">
+                <label>Leave W/O Pay Start</label>
+            </div>
+            <div class="col">
+                <label>Leave W/O Pay End</label>
+            </div>
+            <div class="col">
+                <label>Comp Time Earned Start</label>
+            </div>
+            <div class="col">
+                <label>Comp Time Earned End</label>
+            </div>
+        </div><!--row 33 end-->
+        <br />
+        <div class="form-row"><!--row 34 start-->
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Saturday" readonly>
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Holiday Worked Start"
+                       th:field="${timeEntries.hdyWorkedStart[5]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Holiday Worked End"
+                       th:field="${timeEntries.hdyWorkedEnd[5]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Leave W/O Pay Start"
+                       th:field="${timeEntries.leaveWOPayStart[5]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Leave W/O Pay End"
+                       th:field="${timeEntries.leaveWOPayEnd[5]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Comp Time Earned Start"
+                       th:field="${timeEntries.compTimeEarnedStart[5]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Comp Time Earned End"
+                       th:field="${timeEntries.compTimeEarnedEnd[5]}">
+            </div>
+        </div><!--row 34 end-->
+        <br />
+        <div class="form-row"><!--row 35 start-->
+            <div class="col">
+                <label hidden>Day of Week</label>
+            </div>
+            <div class="col">
+                <label>Annual Leave Start</label>
+            </div>
+            <div class="col">
+                <label>Annual Leave End</label>
+            </div>
+            <div class="col">
+                <label>Comp Time Used Start</label>
+            </div>
+            <div class="col">
+                <label>Comp Time Used End</label>
+            </div>
+            <div class="col">
+                <label>Holiday OT Start</label>
+            </div>
+            <div class="col">
+                <label>Holiday OT End</label>
+            </div>
+        </div><!--row 35 end-->
+        <br />
+        <div class="form-row"><!--row 36 start-->
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Saturday" readonly>
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Annual Leave Start"
+                       th:field="${timeEntries.annualLeaveStart[5]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Annual Leave End"
+                       th:field="${timeEntries.annualLeaveEnd[5]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Comp Time Used Start"
+                       th:field="${timeEntries.compTimeUsedStart[5]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Comp Time Used End"
+                       th:field="${timeEntries.compTimeUsedEnd[5]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Holiday OT Start"
+                       th:field="${timeEntries.holidayOTStart[5]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Holiday OT End"
+                       th:field="${timeEntries.holidayOTEnd[5]}">
+            </div>
+        </div><!--row 36 end-->
+        <hr>
+        <div class="form-row"> <!--row 37 start-->
+            <div class="col">
+                <label>Day of Week</label>
+            </div>
+            <div class="col">
+                <label>RegTime Start</label>
+            </div>
+            <div class="col">
+                <label>RegTime End</label>
+            </div>
+            <div class="col">
+                <label>Overtime Start</label>
+            </div>
+            <div class="col">
+                <label>Overtime End</label>
+            </div>
+            <div class="col">
+                <label>Paid Holiday Start</label>
+            </div>
+            <div class="col">
+                <label>Paid Holiday End</label>
+            </div>
+        </div><!--row 37 end-->
+        <div class="form-row"><!--row 38 start-->
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Sunday" readonly>
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Regular Time Start"
+                       th:field="${timeEntries.regTimeStart[6]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Regular Time End"
+                       th:field="${timeEntries.regTimeEnd[6]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Overtime Start"
+                       th:field="${timeEntries.overtimeStart[6]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Overtime End"
+                       th:field="${timeEntries.overtimeEnd[6]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Paid Holiday Start"
+                       th:field="${timeEntries.paidHdyStart[6]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Paid Holiday End"
+                       th:field="${timeEntries.paidHdyEnd[6]}">
+            </div>
+        </div><!--row 38 end-->
+        <br />
+        <div class="form-row"><!--row 39 start-->
+            <div class="col">
+                <label hidden>Day of Week</label>
+            </div>
+            <div class="col">
+                <label>Holiday Worked Start</label>
+            </div>
+            <div class="col">
+                <label>Holiday Worked End</label>
+            </div>
+            <div class="col">
+                <label>Leave W/O Pay Start</label>
+            </div>
+            <div class="col">
+                <label>Leave W/O Pay End</label>
+            </div>
+            <div class="col">
+                <label>Comp Time Earned Start</label>
+            </div>
+            <div class="col">
+                <label>Comp Time Earned End</label>
+            </div>
+        </div><!--row 39 end-->
+        <br />
+        <div class="form-row"><!--row 40 start-->
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Sunday" readonly>
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Holiday Worked Start"
+                       th:field="${timeEntries.hdyWorkedStart[6]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Holiday Worked End"
+                       th:field="${timeEntries.hdyWorkedEnd[6]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Leave W/O Pay Start"
+                       th:field="${timeEntries.leaveWOPayStart[6]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Leave W/O Pay End"
+                       th:field="${timeEntries.leaveWOPayEnd[6]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Comp Time Earned Start"
+                       th:field="${timeEntries.compTimeEarnedStart[6]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Comp Time Earned End"
+                       th:field="${timeEntries.compTimeEarnedEnd[6]}">
+            </div>
+        </div><!--row 40 end-->
+        <br />
+        <div class="form-row"><!--row 41 start-->
+            <div class="col">
+                <label hidden>Day of Week</label>
+            </div>
+            <div class="col">
+                <label>Annual Leave Start</label>
+            </div>
+            <div class="col">
+                <label>Annual Leave End</label>
+            </div>
+            <div class="col">
+                <label>Comp Time Used Start</label>
+            </div>
+            <div class="col">
+                <label>Comp Time Used End</label>
+            </div>
+            <div class="col">
+                <label>Holiday OT Start</label>
+            </div>
+            <div class="col">
+                <label>Holiday OT End</label>
+            </div>
+        </div><!--row 41 end-->
+        <br />
+        <div class="form-row"><!--row 42 start-->
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Sunday" readonly>
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Annual Leave Start"
+                       th:field="${timeEntries.annualLeaveStart[6]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Annual Leave End"
+                       th:field="${timeEntries.annualLeaveEnd[6]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Comp Time Used Start"
+                       th:field="${timeEntries.compTimeUsedStart[6]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Comp Time Used End"
+                       th:field="${timeEntries.compTimeUsedEnd[6]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Holiday OT Start"
+                       th:field="${timeEntries.holidayOTStart[6]}">
+            </div>
+            <div class="col">
+                <input type="time" th:type="time" class="form-control" placeholder="Holiday OT End"
+                       th:field="${timeEntries.holidayOTEnd[6]}">
+            </div>
+        </div><!--row 42 end-->
+        <br />
+        <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+    </form>
+</div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>
