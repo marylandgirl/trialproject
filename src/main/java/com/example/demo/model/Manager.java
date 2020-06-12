@@ -11,7 +11,7 @@ public class Manager {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private long emp_id;
+    private long empId;
 
     @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Employee> employeeSet;
@@ -33,12 +33,12 @@ public class Manager {
         this.id = id;
     }
 
-    public long getEmp_id() {
-        return emp_id;
+    public long getEmpId() {
+        return empId;
     }
 
-    public void setEmp_id(long emp_id) {
-        this.emp_id = emp_id;
+    public void setEmpId(long emp_id) {
+        this.empId = emp_id;
     }
 
     public Set<Employee> getEmployeeSet() {

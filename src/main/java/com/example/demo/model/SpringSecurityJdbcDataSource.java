@@ -17,13 +17,16 @@
 //    public static void main(String[] args) {
 //        SpringApplication.run(SpringSecurityJdbcDataSource.class, args);
 //    }
-//}
-
+//
+//
 //    @Bean
-//    public CommandLineRunner run(RoleRepository roleRepository, EmployeeRepository employeeRepository, TimeSheetRepository timeSheetRepository,
+//    public CommandLineRunner run(RoleRepository roleRepository, EmployeeRepository employeeRepository,
+//                                 TimeSheetRepository timeSheetRepository,
 //                                 ManagerRepository managerRepository) throws Exception {
 //        return (String[] args) -> {
-//
+//        };
+//    }
+//}
 //            Manager managerSue = new Manager(new HashSet<Employee>());
 //            Manager managerOfSue = new Manager(new HashSet<Employee>());
 //            managerRepository.save(managerOfSue);

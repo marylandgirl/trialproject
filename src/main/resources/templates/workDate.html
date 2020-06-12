@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>workDate</title>
+    <th:block th:insert="base :: headStuff"></th:block>
+    <style>
+        .forBorder {
+            border-radius: 3rem;
+        }
+    </style>
+</head>
+<body>
+<!-- Navbar -->
+<nav th:replace="base :: navlinks"></nav>
+<div class="container-fluid" style="background-color: coral">
+    <div class="row">
+        <!--Left Column-->
+        <div class="col-md-2 my-columns d-flex justify-content-center">
+            <br/>
+            <br/>
+            <h3>KAB</h3>
+            <p>The Logo name KAB stands for the three owners of this Company Kim, Ashu and Bilen.
+                Our Company believes in team work so that no one is left behind.
+                we work together and enjoy the fuit together.
+                We are stronger when we are together.
+            </p>
+            <img src="coffee.jpg" alt="">
+        </div>
+
+
+        <!--Middle Column-->
+        <div class="col-md-7 my-columns d-flex justify-content-center">
+            <h1>Daily Timesheet Entry</h1>
+            <br/> <br/> <br/>
+        </div>
+
+        <!--Right Column-->
+        <div class="col-md-3 my-columns">
+            <h2>Right Column </h2>
+            <h4>Saved Daily Timesheets</h4>
+            <h4>Approved Weekly Timesheets</h4>
+            <h4>Rejected Weekly Timesheets</h4>
+            <p>=============================</p>
+        </div>
+
+    </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<div class="container-fluid">
+    <div class="row">
+        <!--Left Column-->
+        <div class="col-md-2 my-columns d-flex justify-content-center">
+            <h5>LEFT COLUMN</h5>
+        </div>
+
+        <!--Middle Column-->
+        <div class="col-md-7 my-columns d-flex justify-content-center">
+
+<!--            <h1>Choose the date you want to insert the Timesheet</h1>-->
+<!--            <br/>-->
+<!--            <h4>show employee's first name and last name here</h4>-->
+<!--            <br/>-->
+<!--            <h4>Please the date you want to enter your daily Timesheet?</h4>-->
+
+<!--            <form action="#" th:action="@{/continueDailyTimeSheet}" th:object="${dailyTimeSheet}" th:method="post">-->
+<!--                <input type="hidden" th:field="*{employeeId}">-->
+
+<!--                <input type="date" class="form-control" th:field="*{workDate}" rows="4">-->
+<!--                <span th:if="${#fields.hasErrors('workDate')}" th:errors="*{workDate}"></span>-->
+<!--                <br/>-->
+<!--                <br/>-->
+<!--                <br/>-->
+<!--                <button type="submit" class="w3-button w3-theme"><i class="fa fa-pencil"></i>NEXT</button>-->
+<!--            </form>-->
+<!--            -->
+
+            <div class="w3-col m7">
+
+                <div id="login"  class="w3-container w3-card w3-white w3-round w3-margin forBorder"><br>
+                    <h1 class="w3-center">Login</h1><br>
+                    <hr class="w3-clear">
+                    <div class="w3-row-padding" style="margin:0 -16px">
+                    </div>
+                </div>
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <div class="w3-card w3-round w3-white forBorder">
+                            <div class="w3-container w3-padding">
+
+<!--                                <form th:action="@{/continueDailyTimeSheet}" th:object="${dailyTimeSheet}" th:field="${dailyTimeSheet}" method="post">-->
+                                <form th:action="@{test.html}"  method="post">
+<!--                                    <input type="hidden" th:field="*{employeeId}">-->
+
+                                    <br/><br/><br/>
+
+                                    <label>Enter Work Date for Your Timesheet</label>
+                                    <input th:field="*{startTime}" type="text"/>
+<!--                                    <input type="date" name="workDate" class="w3-input w3-border w3-padding"><br/>-->
+                                    <div class="w3-center"><br/><br/>
+                                        <button type="submit" class="w3-button w3-theme">
+                                            <i class="fa fa-pencil"></i> NEXT
+                                        </button>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- End Grid -->
+            </div>
+
+        <!--Right Column-->
+        <div class="col-md-3 my-columns d-flex justify-content-center">
+            <h5>RIGHT COLUMN</h5>
+        </div>
+
+    </div>
+</div>
+</div>
+<div th:replace="base :: footer"></div>
+<div th:replace="base :: footer-scripts"></div>
+    <script>
+        $("#startTime").timepicker({
+            showSeconds: true,
+            showMeridian: false,
+            secondStep: 1
+
+        });
+    </script>
+</body>
+</html>

@@ -3,6 +3,7 @@ package com.example.demo.model;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
 @Entity
@@ -13,14 +14,25 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @NotEmpty
     private String userName;
 
+    @NotEmpty
     private String password;
 
+    @NotEmpty
     private String lastName;
+
+    @NotEmpty
     private String firstName;
+
+    @NotEmpty
     private String email;
+
+//    @NotEmpty
     private double payRate;
+
+//    @NotEmpty
     private boolean enabled;
 
     @ManyToOne(fetch = FetchType.EAGER)

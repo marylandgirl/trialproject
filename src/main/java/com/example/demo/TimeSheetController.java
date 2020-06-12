@@ -39,6 +39,7 @@ public class TimeSheetController {
 
     static final int DAYS_PER_PAY_PERIOD = 7;
 
+//    @GetMapping("/enterTime/{id}")
     @GetMapping("/enterTime/{id}")
     public String timesheetForm(@PathVariable("id") long id, Employee employee, Model model) {
 //        Employee tempUser;
@@ -53,6 +54,7 @@ public class TimeSheetController {
 
         WeeklyTimeEntry weeklyTimeEntry = new WeeklyTimeEntry();
         model.addAttribute("timeEntries", weeklyTimeEntry);
+//        return "test";
         return "timesheetForm";
     }
 
@@ -74,6 +76,6 @@ public class TimeSheetController {
                 System.out.println(e.getMessage());
             }
         }
-        return "index";
+        return "redirect:/";
     }
 }
