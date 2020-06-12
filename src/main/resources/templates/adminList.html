@@ -6,11 +6,10 @@
     <th:block th:insert="base :: headStuff"></th:block>
     <style>
         .my-columns {
-            border: black 1px solid;
+            /*border: black 1px solid;*/
             padding: 0%;
             margin: 0%;
             justify-content: center;
-
         }
 
         img {
@@ -37,27 +36,23 @@
             </p>
 <!--            <img src="coffee.jpg" alt="">-->
         </div>
-
-
         <!--Middle Column-->
         <div class="col-md-7 my-columns d-flex justify-content-center">
 
-            <h1>Admin Page under Construction</h1>
+            <h1>Admin Page</h1>
             <br/>
             <br/>
             <br/>
-
-
         </div>
 
         <!--Right Column-->
         <div class="col-md-3 my-columns">
-            <h2>Right Column </h2>
-            <h4>Timesheets in Queue</h4>
-            <h4>Suspended</h4>
-            <h4>Rejected</h4>
+
+            <h6><a href="#">Timesheets in Queue</a></h6>
+            <h6><a href="#">Suspended</a></h6>
+            <h6><a href="#">Rejected</a></h6>
             <p>=============================</p>
-            <h5>* PROMOTE EMPLOYEE TO MANAGERIAL POSITION</h5>
+            <h6><a href="#">PROMOTE EMPLOYEE TO MANAGER</a></h6>
             <a th:href="@{/add-new-manager}"></a>
             <table>
                 <tr style="text-align: right">
@@ -69,7 +64,7 @@
                 </tr>
                 <tr>
                     <td><h6><a href="">Pending Timesheets By Status</a></h6></td>
-                    <!--                    <td><h6><a th:href="@{/allTimesheets}">Audit All Timesheets</a></h6></td>-->
+                    <!--<td><h6><a th:href="@{/allTimesheets}">Audit All Timesheets</a></h6></td>-->
                 </tr>
             </table>
 
@@ -83,14 +78,14 @@
         <!--Left Column-->
         <div class="col-md-2 my-columns">
             <!--Inside Left Column-->
-            <h5>LEFT</h5>
+<!--            <h5>LEFT</h5>-->
         </div>
 
 
         <!--Middle Column-->
         <div class="col-md-7 my-columns d-flex justify-content-center">
             <!--Inside Middle Column-->
-            <h5>MIDDLE</h5>
+<!--            <h5>MIDDLE</h5>-->
 
 
             <div class="container">
@@ -144,28 +139,30 @@
                     </table>
                 </div>
             </div>
-
-
         </div>
         <!--immediately end of the middle column-->
-
         <!--Right Column-->
         <div class="col-md-3 my-columns">
             <!--Inside Right Column-->
-            <h5>RIGHT2</h5>
+<!--            <h5>RIGHT2</h5>-->
             <!--            <h5>RIGHT</h5>-->
 
             <table class="table">
                 <tbody>
+                <tr>
+                    <h5><a href="">Employees who have Pending Timesheets</a></h5>
+                </tr>
+                <th:block th:each="timeSheet : ${timeSheets}">
+
                 <tr th:each="user : ${allUsers}">
-                    <th:block th:if="${user.id} == ${loggedUser.id}">
+                    <th:block th:if="${user.id} == ${timeSheet.employee.id}">
+<!--                    <th:block th:if="${user.id} == ${loggedUser.id}">-->
                         <td>[[${user.firstName}]]</td>
                     </th:block>
                 </tr>
+                </th:block>
                 </tbody>
             </table>
-
-
         </div>
         <!--        end of right column-->
     </div>

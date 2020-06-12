@@ -1,8 +1,7 @@
 package com.example.demo;
 
-import com.example.demo.model.DailyTimeEntry;
-import com.example.demo.model.Employee;
-import com.example.demo.model.TimeSheet;
+import com.example.demo.model.*;
+import com.example.demo.repository.AuditTrailRepository;
 import com.example.demo.repository.DailyTimeEntryRepository;
 import com.example.demo.repository.EmployeeRepository;
 import com.example.demo.repository.TimeSheetRepository;
@@ -34,6 +33,12 @@ public class TimeSheetController {
     @Autowired
     EmployeeRepository employeeRepository;
 
+    @Autowired
+    AuditTrailService auditTrailService;
+
+    @Autowired
+    EmployeeService employeeService;
+
     private LocalDate monday = LocalDate.now().with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
     private LocalDate sunday = monday.plusDays(6);
 
@@ -42,11 +47,11 @@ public class TimeSheetController {
 //    @GetMapping("/enterTime/{id}")
     @GetMapping("/enterTime/{id}")
     public String timesheetForm(@PathVariable("id") long id, Employee employee, Model model) {
-//        Employee tempUser;
-//        tempUser = employeeRepository.findById(id).get();
-//
-//        TimeSheet tempTimesheet = new TimeSheet();
-//        tempTimesheet.set
+
+        auditTrailService.logTimesheetSaved();
+        if (employeeService.getEmployee() != null) {
+            model.addAttribute("loggedUser", employeeService.getEmployee());
+        }
         LocalDate monday = LocalDate.now().with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
         LocalDate sunday = monday.plusDays(6);
         model.addAttribute("start", monday);
@@ -76,6 +81,7 @@ public class TimeSheetController {
                 System.out.println(e.getMessage());
             }
         }
+        auditTrailService.logTimesheetSubmitted();
         return "redirect:/";
     }
 }

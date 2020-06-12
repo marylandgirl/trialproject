@@ -36,7 +36,7 @@
 <!--            <input type="hidden" th:field="*{id}">-->
             <div>
                 <label for="exampleInputEmail1">First Name </label>
-                <input type="text"  placeholder="First Name" th:field="*{firstName}" class="form-control" aria-describedby="emailHelp">
+                <input type="text"  placeholder="First Name" th:field="*{firstName}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                 <strong>
                     <span th:if="*{#fields.hasErrors('firstName')}" th:errors="*{firstName}"> Invalid first name </span>
                 </strong></span></spa>

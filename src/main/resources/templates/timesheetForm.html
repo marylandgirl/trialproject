@@ -10,8 +10,11 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <title>Time sheet</title>
+    <th:block th:insert="base :: headStuff"></th:block>
 </head>
 <body>
+<!-- Navbar -->
+<nav th:replace="base :: navlinks"></nav>
 <div class="container">
     <h1>Time Sheet</h1>
     <h2 th:text="${#temporals.format(start)} + '&nbsp;To&nbsp;' +  ${#temporals.format(end)}">Start Dt: 1/1/2000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;End Dt: 1/7/2000</h2>
@@ -1169,5 +1172,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+<div th:replace="base :: footer"></div>
+<div th:replace="base :: footer-scripts"></div>
 </body>
 </html>

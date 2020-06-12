@@ -161,7 +161,7 @@ public class AuditTrailService {
         long staffId = employeeService.getEmployee().getId();
         long timesheetId = -1;
 
-        String action = employeeService.getEmployee().getUserName() + " saved timesheet";
+        String action = employeeService.getEmployee().getUserName() + " started timesheet";
 
         DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
         Date dateObj = new Date();
@@ -193,5 +193,27 @@ public class AuditTrailService {
 
         auditTrailRepository.save(logTimesheetSaved);
     }
+
+//    public void startedTimeSheet(){
+//        Employee tempCurrentEmployee = null;
+//        long tempEmpId = 0;
+//
+//        if(employeeService.getEmployee() != null){
+//            tempEmpId = employeeService.getEmployee().getId();
+//            tempCurrentEmployee = employeeService.getEmployee();
+//        }
+//        long staffId = employeeService.getEmployee().getId();
+//        long timesheetId = -1;
+//
+//        String action = employeeService.getEmployee().getUserName() + " submitted timesheet";
+//
+//        DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+//        Date dateObj = new Date();
+//        String dateLoggedIn = df.format(dateObj);
+//
+//        AuditTrail logTimesheetSaved = new AuditTrail(staffId, timesheetId,action, dateLoggedIn);
+//
+//        auditTrailRepository.save(logTimesheetSaved);
+//    }
 
 }   // end of service class

@@ -63,15 +63,6 @@ public class HomeController {
         return "redirect:/login";
     }
 
-//    @RequestMapping("/register")
-//    public String getRegistrationForm(Model model) {
-//        model.addAttribute("newUser", new Employee());
-//        if (employeeService.getEmployee() != null) {
-//            model.addAttribute("loggedUser", employeeService.getEmployee());
-//        }
-//        return "register";
-//    }
-
     @RequestMapping("/adminPage")
     public String adminPageListOfEmployee(Model model) {
         model.addAttribute("allUsers", employeeRepository.findAll());
@@ -91,6 +82,9 @@ public class HomeController {
         }
 
         model.addAttribute("qtyOfPendingTimesheets", countPendingTimesheet);
+        Set<TimeSheet> timeSheets = new HashSet<>();
+
+        model.addAttribute("timeSheets", timeSheetRepository.findAll());
 
         return "adminList";
     }
@@ -153,7 +147,7 @@ public class HomeController {
     }
 
     @RequestMapping("/allTimesheets")
-        public String listAllEmployee(Model model) {
+    public String listAllEmployee(Model model) {
         model.addAttribute("allUsers", employeeRepository.findAll());
         // get logged in employeeId
         long loggedInEmployeeId = employeeService.getEmployee().getId();
@@ -200,7 +194,7 @@ public class HomeController {
     }
 
     @RequestMapping("/startTimeSheet/{id}")
-    public String chooseWorkDate(@PathVariable("id") long id, Model model){
+    public String chooseWorkDate(@PathVariable("id") long id, Model model) {
         model.addAttribute("dailyTimeSheet", new DailyTimeEntry());
         if (employeeService.getEmployee() != null) {
             model.addAttribute("loggedUser", employeeService.getEmployee());
@@ -208,27 +202,5 @@ public class HomeController {
 
         return "timesheetForm";
     }
-
-//    @RequestMapping("/continueDailyTimeSheet")
-//    public String openDailyTimeSheet(@ModelAttribute("dailyTimeSheet") Daily daily, Model model) {
-//        model.addAttribute("dailyTimeSheet", daily);        // employeeId & workDate fields shall be stored in the view hidden
-//        if (employeeService.getEmployee() != null) {
-//            model.addAttribute("loggedUser", employeeService.getEmployee());
-//        }
-//
-//        return "test";
-//    }
-//
-//    @RequestMapping("/processDailyTimeSheet")
-//    public String processDailyTimeSheet(@ModelAttribute("dailyTimeSheet") Daily daily, Model model){
-//
-//        //push it to repository
-//
-//        dailyRepository.save(daily);
-//
-//
-//
-//        return "redirect:/";
-//    }
 
 }

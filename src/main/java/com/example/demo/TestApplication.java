@@ -21,9 +21,6 @@ public class TestApplication {
 		SpringApplication.run(TestApplication.class, args);
 	}
 
-
-
-
 	@Bean
 	public CommandLineRunner run(RoleRepository roleRepository, EmployeeRepository employeeRepository, TimeSheetRepository timeSheetRepository,
 								 ManagerRepository managerRepository) throws Exception {
@@ -34,9 +31,9 @@ public class TestApplication {
 			managerRepository.save(managerOfSue);
 
 
-			Employee empSue = new Employee("sue", "sue", "Han", "Sue",
+			Employee empSue = new Employee("admin", "admin", "Han", "Sue",
 					"sue@mc.edu", 200.00, true, managerOfSue, new HashSet<TimeSheet>());
-			Role adminRoleSue = new Role("sue", "ROLE_ADMIN");
+			Role adminRoleSue = new Role("admin", "ROLE_ADMIN");
 			roleRepository.save(adminRoleSue);
 
 			Employee ashu = new Employee("ashu", "ashu", "Maru", "Ashenafi",
@@ -93,5 +90,4 @@ public class TestApplication {
 
 		};
 	}
-
 }

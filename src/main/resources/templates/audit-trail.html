@@ -6,7 +6,7 @@
     <th:block th:insert="base :: headStuff"></th:block>
     <style>
         .my-columns {
-            border: black 1px solid;
+            /*border: black 1px solid;*/
             padding: 0%;
             margin: 0%;
             justify-content: center;
@@ -34,7 +34,7 @@
                 we work together and enjoy the fruit together.
                 We are stronger when we are together.
             </p>
-            <img src="coffee.jpg" alt="">
+<!--            <img src="coffee.jpg" alt="">-->
         </div>
 
 
@@ -51,19 +51,19 @@
 
         <!--Right Column-->
         <div class="col-md-3 my-columns" >
-            <h2>Log History By Group </h2>
-            <h4>By Employee</h4>
-            <h4>By Action</h4>
-            <h4>By Timesheet</h4>
+            <h6>Log History By Group </h6>
+            <h6><a href="">By Employee</a></h6>
+            <h6><a href="">By Action</a></h6>
+            <h6><a href="">By Timesheet</a></h6>
             <p>=============================</p>
 
             <table>
                 <tr>
-                    <td><h1>[[${qtyOfPendingTimesheets}]]</h1></td>
-                    <td>Pending Timesheets</td>
+                    <td><h1><a href="">[[${qtyOfPendingTimesheets}]]</a></h1></td>
+                    <td><a href="">Pending Timesheets</a></td>
                 </tr>
                 <tr>
-                    <td><h3>Audit Tracker</h3></td>
+                    <td><h3><a href="">Audit Tracker</a></h3></td>
                 </tr>
             </table>
 
